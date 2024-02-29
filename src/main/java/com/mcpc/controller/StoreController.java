@@ -18,6 +18,12 @@ import lombok.RequiredArgsConstructor;
 public class StoreController {
     private final StoreService storeService;
     
+    // 사업자를 누르면 storeChoice.html로 이동
+    @GetMapping("storeChoice")
+    public String storeChoice() {
+        return "store/storeChoice";
+    }
+    
     @GetMapping("storeJoin")
     public String joinForm() {
         return "store/storeJoin";
