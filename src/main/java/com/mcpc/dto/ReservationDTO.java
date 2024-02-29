@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class OrderDTO {
+public class ReservationDTO {
     private List<String> OrderMenu; //주문메뉴
     private List<Integer> OrderMenuCount;//주문메뉴 갯수
     private int person; //인원수

@@ -12,6 +12,10 @@ public class HomeController {
 	public String home2() {
 		return "home2";
 	}
+	@GetMapping("review")
+	public String review() {
+		return "review";
+	}
 	//////test
 	
 	
