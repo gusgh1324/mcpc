@@ -10,28 +10,28 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/login/*")
+@RequestMapping("/user/*")
 @RequiredArgsConstructor 
-public class UserController {
+public class LoginController {
 	private final UserService userService;
 	
 	@GetMapping("join")
-	public String join1() {
-		return "/login/join";
+	public String join() {
+		return "/user/join";
 	}
 
 
 	// 로그인폼
 	@GetMapping("login")
-	public String login1() {
-		return "/login/login";
+	public String login() {
+		return "/user/login";
 	}
 
 
 	//로그아웃
 	@GetMapping("logout")
-	public String logout1(HttpSession session) {
+	public String logout(HttpSession session) {
 		session.invalidate();
-		return "/login/login";
+		return "/user/login";
 	}
 }
