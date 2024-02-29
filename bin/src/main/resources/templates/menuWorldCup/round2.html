@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 이상형 월드컵</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+    <style>
+        .contestant-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .contestant {
+            display: inline-block;
+        }
+        .contestant img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 contestant-container">
+                <!-- 첫 번째 이미지를 왼쪽에 표시 -->
+                <div class="contestant">
+                    <!-- 이미지를 랜덤하게 선택하여 표시 -->
+                    <img id="image1" src="" alt="메뉴 1" onclick="nextImage('image1', 'image2')">
+                </div>
+            </div>
+            <div class="col-md-6 contestant-container">
+                <!-- 두 번째 이미지를 오른쪽에 표시 -->
+                <div class="contestant">
+                    <!-- 이미지를 랜덤하게 선택하여 표시 -->
+                    <img id="image2" src="" alt="메뉴 2" onclick="nextImage('image2', 'image1')">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{fragments/footer::footer}"></div>
+
+    <script>
+        // 이미지 경로 배열
+        var imagePaths = [
+            "/images/image1.jpg",
+            "/images/image2.jpg",
+            "/images/image3.jpg",
+            "/images/image4.jpg",
+            "/images/image5.jpg",
+            "/images/image6.jpg",
+            "/images/image7.jpg",
+            "/images/image8.jpg"
+        ];
+
+        // 선택된 이미지 배열
+        var selectedImages = [];
+
+        // 이미지를 랜덤하게 선택하는 함수
+        function getRandomImagePath() {
+            // 이미지가 더 이상 없을 경우 null 반환
+            if (imagePaths.length === 0) return null;
+            var randomIndex = Math.floor(Math.random() * imagePaths.length);
+            return imagePaths.splice(randomIndex, 1)[0];
+        }
+
+        // 다음 이미지 선택 함수
+        function nextImage(clickedImageId, otherImageId) {
+            // 이미지를 랜덤하게 선택하여 설정
+            var clickedImage = document.getElementById(clickedImageId);
+            var otherImage = document.getElementById(otherImageId);
+
+            // 이미지 클릭 이벤트 제거
+            clickedImage.onclick = null;
+
+            // 선택된 이미지를 배열에 추가
+            selectedImages.push(clickedImage.src);
+
+            // 선택된 이미지를 배열에 추가된 경우
+            if (selectedImages.length >= 4) {
+                // 선택된 이미지 배열 출력
+                console.log("Selected Images:");
+                selectedImages.forEach(function(image) {
+                    console.log(image);
+                });
+                return;
+            }
+
+            // 선택된 이미지를 배열에서 제거
+            var indexToRemove = imagePaths.indexOf(clickedImage.src);
+            if (indexToRemove !== -1) {
+                imagePaths.splice(indexToRemove, 1);
+            }
+
+            // 다음 이미지 설정
+            var nextImagePath = getRandomImagePath();
+            if (nextImagePath !== null) {
+                clickedImage.src = nextImagePath;
+            } else {
+                // 이미지가 없을 경우 처리 (예: 경기 종료)
+                clickedImage.alt = "경기 종료";
+            }
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener("DOMContentLoaded", function() {
+            // 초기 이미지 설정
+            document.getElementById("image1").src = getRandomImagePath();
+            document.getElementById("image2").src = getRandomImagePath();
+        });
+    </script>
+</body>
+</html>

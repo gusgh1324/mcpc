@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사업자 회원가입</title>
+</head>
+<body>
+    <h2>사업자 회원가입</h2>
+    <form action="storeJoin" method="post">
+        <div>
+            <label for="storeName">상호명:</label>
+            <input type="text" id="storeName" name="storeName">
+        </div>
+        <div>
+            <label for="storePassword">비밀번호:</label>
+            <input type="password" id="storePassword" name="storePassword">
+        </div>
+        <div>
+            <label for="category">카테고리:</label>
+            <input type="text" id="category" name="category">
+        </div>
+        <div>
+            <label for="mainMenu">대표 메뉴:</label>
+            <input type="text" id="mainMenu" name="mainMenu">
+        </div>
+        		<div>
+		    <label for="image">대표 메뉴 사진:</label>
+		    <input type="file" id="image" name="image" accept="image/*">
+		</div>
+        <div>
+            <label for="menuPrice">대표 메뉴 가격:</label>
+            <input type="text" id="menuPrice" name="menuPrice">
+        </div>
+        <div>
+            <label>광고:</label>
+            <input type="radio" id="premiumYes" name="priminum" value="Yes">
+            <label for="premiumYes">네</label>
+            <input type="radio" id="premiumNo" name="priminum" value="No">
+            <label for="premiumNo">아니요</label>
+        </div>
+        <div>
+            <label for="offDay">휴무일:</label><br>
+            <input type="checkbox" id="monday" name="offDay" value="월">
+            <label for="monday">월</label>
+            <input type="checkbox" id="tuesday" name="offDay" value="화">
+            <label for="tuesday">화</label>
+            <input type="checkbox" id="wednesday" name="offDay" value="수">
+            <label for="wednesday">수</label>
+            <input type="checkbox" id="thursday" name="offDay" value="목">
+            <label for="thursday">목</label>
+            <input type="checkbox" id="friday" name="offDay" value="금">
+            <label for="friday">금</label>
+            <input type="checkbox" id="saturday" name="offDay" value="토">
+            <label for="saturday">토</label>
+            <input type="checkbox" id="sunday" name="offDay" value="일">
+            <label for="sunday">일</label>
+        </div>
+        <button type="submit">회원가입</button>
+    </form>
+</body>
+</html>

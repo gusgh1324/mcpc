@@ -10,8 +10,7 @@ public class McpcApplication {
 		SpringApplication.run(McpcApplication.class, args);
 		// 테스트 커밋
 		// 테스트1111
-		// 도현호 커밋123111
-		// 풀 푸쉬 테스트1
+
 	}
 
 }
