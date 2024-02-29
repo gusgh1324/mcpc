@@ -27,14 +27,9 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
-	@GetMapping("blog")
-	public String blog() {
-		return "blog";
-	}
-	
-	@GetMapping("blog-details")
-	public String blogDetails() {
-		return "blog-details";
+	@GetMapping("home")
+	public String home1() {
+		return "home";
 	}
 	
 }
