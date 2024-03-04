@@ -1,5 +1,7 @@
 package com.mcpc.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -9,6 +11,7 @@ import com.mcpc.model.Reservation;
 
 @Mapper
 public interface ReservationMapper {
+	////
     @Insert("INSERT INTO menu_order(menu_name, menu_count, reservation_id) VALUES (#{menuOrder.menuName}, #{menuOrder.menuCount}, #{reservationId})")
     void menuOrderInsert(MenuOrder menuOrder, Long reservationId);
 
@@ -17,4 +20,9 @@ public interface ReservationMapper {
 
     @Select("SELECT LAST_INSERT_ID()")
     Long getLastInsertId(); // 삽입한 마지막 행의 ID를 반환하는 쿼리
+    ////
+    
+    // 모든 주문 정보 가져오는 쿼리
+    @Select("SELECT * FROM reservation")
+    List<Reservation> getAllReservations();
 }

@@ -1,5 +1,7 @@
 package com.mcpc.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.mcpc.mapper.ReservationMapper;
@@ -13,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class ReservationService {
     private final ReservationMapper reservationMapper;
 
-    public void insert(Reservation reservation, MenuOrder[] menuOrders) {
+    public List<Reservation> insert(Reservation reservation, MenuOrder[] menuOrders) {
         // 예약 정보 삽입
         reservationMapper.reservationInsert(reservation);
 
@@ -24,5 +26,10 @@ public class ReservationService {
         for (MenuOrder menuOrder : menuOrders) {
             reservationMapper.menuOrderInsert(menuOrder, reservationId);
         }
+        
+        // 모든 예약 정보 반환
+        return reservationMapper.getAllReservations();
     }
+
+
 }
