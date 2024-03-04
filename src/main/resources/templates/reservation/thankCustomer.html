@@ -43,13 +43,14 @@
         </div>
     </div>
     
-    <div class="container">
-    	(0000)시 결제 완료 
-        <h2 class="alert alert-danger">(가게이름)예약해주셔서 감사합니다.</h2>
-        <p> 세팅은 (00:00)에 완료될 예정입니다.
-        <p> 주문번호 : (0)
-        
-    </div>
+<div class="container">
+    <span th:text="${#temporals.format(orderTime, 'yyyy-MM-dd HH:mm:ss')} + ' 결제 완료'"></span>
+    <h2 class="alert alert-danger" th:text="'(' + ${id} + ') 예약해주셔서 감사합니다.'"></h2>
+    <p> 세팅은 20분후 완료될 예정입니다.
+    <p> 주문번호 : <span th:text="${id}"></span>
+</div>
+
+
     
     <div class="container">
         <p><a href="form" class="btn btn-secondary" onclick="goBack()"> &laquo; 이전으로</a>

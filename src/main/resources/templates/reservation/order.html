@@ -99,13 +99,26 @@
 			</table>
 			<a href="/" class="btn btn-secondary" role="button"> 홈으로 </a> 
 			<a href="/review" class="btn btn-secondary" role="button"> 리뷰쓰기 </a> 
-			<a href="thankCustomer" class="btn btn-secondary" role="button">
-				이전으로 </a> <a href="#" class="btn btn-secondary"> &laquo; 예약취소</a> <a
-				href="#" class="btn btn-secondary"> &laquo; 전화문의</a>
+			<a href="thankCustomer" class="btn btn-secondary" role="button"> 이전으로 </a> 
+			<a href="#" class="btn btn-secondary" role="button" onclick="cancelReservation()"> &laquo; 예약취소</a>
+						
+			<!-- 시간에따라 
+			<a href="#" class="btn btn-secondary" th:if="${elapsedTime > 0}" th:text="'&laquo; 예약취소 (' + ${elapsedTime} + '분 후 불가능)'"></a>
+			<a href="#" class="btn btn-secondary" th:unless="${elapsedTime > 0}"> &laquo; 예약취소</a> -->
+			
+			<a href="#" class="btn btn-secondary" onclick="storetelephone()"> &laquo; 전화문의</a>
 		</div>
 	</div>
 	<div th:replace="~{fragments/footer::footer}"></div>
 </body>
+<script>
+    function cancelReservation() {
+        alert("취소 시간이 지났습니다.");
+    }
+    function storetelephone() {
+        alert("010-9255-1280(가게전화로 연동).");
+    }
+</script>
 
 
 
