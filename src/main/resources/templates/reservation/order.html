@@ -64,7 +64,11 @@
 		<div class="row justify-content-between">
 
 			<div class="col-4" align="right">
-				<p th:text="'주문시간 : '+${#dates.format(reservation.orderTime, 'yyyy-MM-dd')}">주문시간</p>
+				<p th:if="${reservation.orderTime == null}"
+					th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+				<p th:if="${reservation.orderTime != null}"
+					th:text="'주문시간 : ' + ${#dates.format(reservation.orderTime, 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+
 			</div>
 		</div>
 		<div>
