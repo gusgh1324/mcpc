@@ -105,10 +105,10 @@ public class WorldCupController {
         selectedImages.add(new WorldCupDTO(selectedImage6));
         return "redirect:/menuWorldCup/round4_1";
     }
-    @GetMapping("/menuWorldCup/round4_1")
+    @GetMapping("/menuWorldCup/round4")
     public String showRound4_1Page(Model model) {
         // Add necessary logic to populate the model
-        return "/menuWorldCup/round4_1"; // Assuming there is a corresponding HTML template
+        return "/menuWorldCup/round4"; // Assuming there is a corresponding HTML template
     }
 
 
