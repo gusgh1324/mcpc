@@ -21,8 +21,8 @@ public interface ReservationMapper {
     @Select("SELECT LAST_INSERT_ID()")
     Long getLastInsertId(); // 삽입한 마지막 행의 ID를 반환하는 쿼리
     ////
+       
     
-    // 모든 주문 정보 가져오는 쿼리
     @Select("SELECT * FROM reservation")
-    List<Reservation> getAllReservations();
+    List<Reservation> list();
 }
