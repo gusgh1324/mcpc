@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Impact Bootstrap Template - Index</title>
+<title>영수증</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -45,20 +45,30 @@
 </head>
 <body>
 	<div th:replace=" ~{fragments/header::header}"></div>
+
+
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">주문 정보</h1>
 		</div>
 	</div>
 	<div class="container col-8 alert alert-info">
+		<div>
+			<h2 class="alert alert-danger" style="text-align: center;">(OO가게)예약해주셔서
+				감사합니다.</h2>
+		</div>
+
 		<div class="text-center">
 			<h1>영수증</h1>
 		</div>
 		<div class="row justify-content-between">
 
 			<div class="col-4" align="right">
-				<p>
-					<em>주문시간 : [[${shipping_shippingDate}]]</em>
+				<p th:if="${reservation.orderTime == null}"
+					th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+				<p th:if="${reservation.orderTime != null}"
+					th:text="'주문시간 : ' + ${#dates.format(reservation.orderTime, 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+
 			</div>
 		</div>
 		<div>
@@ -72,21 +82,30 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 포이치 -->
-					<tr>
-						<td class="text-center"><em>김피탕</em></td>
-						<td class="text-center">5</td>
-						<td class="text-center">5000</td>
-						<td class="text-center">5*5000</td>
+				<tbody>
+					<tr th:each="menuOrder : ${reservation.menuOrders}">
+						<td th:text="${menuOrder.menuName}"></td>
+						<td th:text="${menuOrder.menuCount}"></td>
+						<td>2000</td>
+						<td th:text="${menuOrder.menuCount}*2000"></td>
 					</tr>
-					<tr>
-						<td class="text-center"><em>김탕</em></td>
-						<td class="text-center">2</td>
-						<td class="text-center">2000</td>
-						<td class="text-center">2*2000</td>
-					</tr>
-					<!-- 포이치 -->
 				</tbody>
+				<!-- 포이치 -->
+				<tr>
+					<td class="text-center"><em>김피탕</em></td>
+					<td class="text-center">5</td>
+					<td class="text-center">5000</td>
+					<td class="text-center">5*5000</td>
+				</tr>
+				<tr>
+					<td class="text-center"><em>김탕</em></td>
+					<td class="text-center">2</td>
+					<td class="text-center">2000</td>
+					<td class="text-center">2*2000</td>
+				</tr>
+				<!-- 포이치 -->
+				</tbody>
+
 				<tfoot>
 					<tr>
 						<td></td>
@@ -97,15 +116,29 @@
 					</tr>
 				</tfoot>
 			</table>
-			<a href="/" class="btn btn-secondary" role="button"> 홈으로 </a> 
-			<a href="/review" class="btn btn-secondary" role="button"> 리뷰쓰기 </a> 
-			<a href="thankCustomer" class="btn btn-secondary" role="button">
-				이전으로 </a> <a href="#" class="btn btn-secondary"> &laquo; 예약취소</a> <a
-				href="#" class="btn btn-secondary"> &laquo; 전화문의</a>
+			<a href="/" class="btn btn-secondary" role="button"> 홈으로 </a> <a
+				href="/review" class="btn btn-secondary" role="button"> 리뷰작성 </a> <a
+				href="#" class="btn btn-secondary" role="button"
+				onclick="cancelReservation()"> &laquo; 예약취소</a>
+
+			<!-- 시간에따라 
+			<a href="#" class="btn btn-secondary" th:if="${elapsedTime > 0}" th:text="'&laquo; 예약취소 (' + ${elapsedTime} + '분 후 불가능)'"></a>
+			<a href="#" class="btn btn-secondary" th:unless="${elapsedTime > 0}"> &laquo; 예약취소</a> -->
+
+			<a href="#" class="btn btn-secondary" onclick="storetelephone()">
+				&laquo; 전화문의</a>
 		</div>
 	</div>
 	<div th:replace="~{fragments/footer::footer}"></div>
 </body>
+<script>
+	function cancelReservation() {
+		alert("취소 시간이 지났습니다.");
+	}
+	function storetelephone() {
+		alert("010-9255-1280(가게전화로 연동)");
+	}
+</script>
 
 
 

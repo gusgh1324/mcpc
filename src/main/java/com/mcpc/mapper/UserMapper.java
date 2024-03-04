@@ -9,13 +9,12 @@ import com.mcpc.dto.UserDTO;
 
 @Mapper
 public interface UserMapper {
-	//추가
-	@Insert("insert into user values(#{userId}, #{userPassword},#{userEmail},#{userName}, #{userBirth}, #{userGender}, #{userPNumber} )")
-	public void join(UserDTO user);
-	//아이디 중복확인
-	@Select("select count(*)  from user where id=#{userId}")
-	public int idCheck(String userId);
-	//로그인 체크
-	@Select("select * from user where id=#{userId}")
-	public UserDTO loginCheck(String userId);
+	// 회원가입
+    @Insert("INSERT INTO user (userId, userPassword, userEmail, userName, userBirth, userGender, userPNumber) " +
+            "VALUES (#{userId}, #{userPassword}, #{userEmail}, #{userName}, #{userBirth}, #{userGender}, #{userPNumber})")
+    void join(UserDTO user);
+    
+    // 로그인 : 아이디와 비밀번호로 사용자 조회
+    @Select("SELECT * FROM user WHERE userId = #{userId} AND userPassword = #{userPassword}")
+    UserDTO login(String userId, String userPassword);
 }
