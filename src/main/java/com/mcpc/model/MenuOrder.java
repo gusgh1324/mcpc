@@ -22,7 +22,6 @@ public class MenuOrder {
     private Reservation reservation;
 
     private String menuName;
-    private int menuCount;
+    private int menuCount;//메뉴의 갯수를 세줌
 
-    // getters and setters
 }

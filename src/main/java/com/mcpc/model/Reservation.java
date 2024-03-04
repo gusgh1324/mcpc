@@ -30,6 +30,5 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
     private List<MenuOrder> menuOrders;
 
-    // getters and setters
 }
 
