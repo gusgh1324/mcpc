@@ -53,21 +53,18 @@
 		</div>
 	</div>
 	<div class="container col-8 alert alert-info">
-		<div>
-			<h2 class="alert alert-danger" style="text-align: center;">(OO가게)주문해주셔서
-				감사합니다.</h2>
-		</div>
-
 		<div class="text-center">
 			<h1>영수증</h1>
 		</div>
 		<div class="row justify-content-between">
-			<p th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+			<p
+				th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
 		</div>
 
 		<table class="table table-hover">
 			<thead>
 				<tr>
+					<th class="text-center">주문번호</th>
 					<th class="text-center">메뉴</th>
 					<th class="text-center">갯수</th>
 					<th class="text-center">가격</th>
@@ -77,23 +74,25 @@
 
 			<tbody>
 				<tr th:each="menuOrder : ${menuOrders}">
-					<td class="text-center" th:text="${menuOrder.menuName}">메뉴이름</td>
-					<td class="text-center" th:text="${menuOrder.menuCount}">수량</td>
-					<td class="text-center">2000</td>
-					<td class="text-center" th:text="${menuOrder.menuCount * 2000}">소계</td>
+					<th:block th:if="${menuOrder.id == lastOrderId}">
+						<td class="text-center"th:text="${menuOrder.id}">주문번호</td>
+						<td class="text-center"th:text="${menuOrder.menuName}">메뉴명</td>
+						<td class="text-center" th:text="${menuOrder.menuCount}">수량</td>
+						<td class="text-center">6000</td>
+						<td class="text-center" th:text="${menuOrder.menuCount * 6000}">소계</td>
+					</th:block>
 				</tr>
 			</tbody>
-
-
 
 
 			<tfoot>
 				<tr>
 					<td></td>
 					<td></td>
+					<td></td>
 					<td class="text-right"><strong></strong></td>
-					<td class="text-center text-danger"><strong>총액 :
-							25000 + 4000</strong></td>
+					<td class="text-center text-danger"><strong>총액 : 구현중
+							ㅠㅠ</strong></td>
 				</tr>
 			</tfoot>
 		</table>
