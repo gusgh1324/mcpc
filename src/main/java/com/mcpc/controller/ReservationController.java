@@ -48,12 +48,15 @@ public class ReservationController {
     }
 
 
-    // 영수증 확인
+ // 영수증 확인
     @GetMapping("/order")
     public String order(Model model) {
+    	int lastOrderId = reservationService.getMaxInsertId();
+        model.addAttribute("lastOrderId", lastOrderId);
         // 예약 서비스에서 예약 목록을 가져와 모델에 추가
         model.addAttribute("reservation", reservationService.list());
         model.addAttribute("menuOrders", reservationService.list2());
         return "reservation/order";
     }
+
 }

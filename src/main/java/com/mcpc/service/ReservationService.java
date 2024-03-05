@@ -36,4 +36,8 @@ public class ReservationService {
     public List<MenuOrder> list2(){
         return reservationMapper.list2();
     }
+    
+    public int getMaxInsertId() {
+    	return reservationMapper.getMaxInsertId();
+    }
 }

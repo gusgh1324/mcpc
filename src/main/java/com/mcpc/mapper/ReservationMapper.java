@@ -11,8 +11,7 @@ import com.mcpc.model.Reservation;
 
 @Mapper
 public interface ReservationMapper {
-	////
-    @Insert("INSERT INTO menu_order(menuname, menucount, reservation_id) VALUES (#{menuOrder.menuName}, #{menuOrder.menuCount}, #{reservationId})")
+    @Insert("INSERT INTO menu_order(id,menuname, menucount, reservationid) VALUES ( #{reservationId}, #{menuOrder.menuName}, #{menuOrder.menuCount}, #{reservationId})")
     public void menuOrderInsert(MenuOrder menuOrder, Long reservationId);
 
     @Select("SELECT LAST_INSERT_ID()")
@@ -20,8 +19,6 @@ public interface ReservationMapper {
     
     @Insert("INSERT INTO reservation (person, hour, minute, etc, ordertime) VALUES (#{person}, #{hour}, #{minute}, #{etc}, now())")
     public void reservationInsert(Reservation reservation);
-    ////
-       
     
     @Select("SELECT * FROM reservation")
     public List<Reservation> list();
@@ -29,4 +26,6 @@ public interface ReservationMapper {
     @Select("SELECT * FROM menu_order")
     public List<MenuOrder> list2();
     
+    @Select("SELECT MAX(id) FROM reservation")
+    public int getMaxInsertId();
 }
