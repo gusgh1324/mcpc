@@ -1,5 +1,7 @@
 package com.mcpc.dto;
 
+import org.springframework.util.StringUtils;
+
 // xptmxm
 
 import jakarta.persistence.GeneratedValue;
@@ -16,4 +18,8 @@ public class StoreDTO {
 	private String storeName; // 상호명
 	private String storePassword; // 가게 비밀번호
 	private String offDay; // 휴무일
+	
+    public boolean isValid() {
+        return !StringUtils.isEmpty(storeName) && !StringUtils.isEmpty(storePassword);
+    }
 }
