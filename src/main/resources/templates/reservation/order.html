@@ -54,7 +54,7 @@
 	</div>
 	<div class="container col-8 alert alert-info">
 		<div>
-			<h2 class="alert alert-danger" style="text-align: center;">(OO가게)예약해주셔서
+			<h2 class="alert alert-danger" style="text-align: center;">(OO가게)주문해주셔서
 				감사합니다.</h2>
 		</div>
 
@@ -62,72 +62,53 @@
 			<h1>영수증</h1>
 		</div>
 		<div class="row justify-content-between">
-
-			<div class="col-4" align="right">
-				<p th:if="${reservation.orderTime == null}"
-					th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
-				<p th:if="${reservation.orderTime != null}"
-					th:text="'주문시간 : ' + ${#dates.format(reservation.orderTime, 'yyyy-MM-dd / HH:mm')}">주문시간</p>
-
-			</div>
+			<p th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
 		</div>
-		<div>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="text-center">메뉴</th>
-						<th class="text-center">갯수</th>
-						<th class="text-center">가격</th>
-						<th class="text-center">소계</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tbody>
-					<tr th:each="menuOrder : ${reservation.menuOrders}">
-						<td th:text="${menuOrder.menuName}"></td>
-						<td th:text="${menuOrder.menuCount}"></td>
-						<td>2000</td>
-						<td th:text="${menuOrder.menuCount}*2000"></td>
-					</tr>
-				</tbody>
-				<!-- 포이치 -->
+
+		<table class="table table-hover">
+			<thead>
 				<tr>
-					<td class="text-center"><em>김피탕</em></td>
-					<td class="text-center">5</td>
-					<td class="text-center">5000</td>
-					<td class="text-center">5*5000</td>
+					<th class="text-center">메뉴</th>
+					<th class="text-center">갯수</th>
+					<th class="text-center">가격</th>
+					<th class="text-center">소계</th>
 				</tr>
-				<tr>
-					<td class="text-center"><em>김탕</em></td>
-					<td class="text-center">2</td>
+			</thead>
+
+			<tbody>
+				<tr th:each="menuOrder : ${menuOrders}">
+					<td class="text-center" th:text="${menuOrder.menuName}">메뉴이름</td>
+					<td class="text-center" th:text="${menuOrder.menuCount}">수량</td>
 					<td class="text-center">2000</td>
-					<td class="text-center">2*2000</td>
+					<td class="text-center" th:text="${menuOrder.menuCount * 2000}">소계</td>
 				</tr>
-				<!-- 포이치 -->
-				</tbody>
+			</tbody>
 
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td class="text-right"><strong></strong></td>
-						<td class="text-center text-danger"><strong>총액 :
-								25000 + 4000</strong></td>
-					</tr>
-				</tfoot>
-			</table>
-			<a href="/" class="btn btn-secondary" role="button"> 홈으로 </a> <a
-				href="/review" class="btn btn-secondary" role="button"> 리뷰작성 </a> <a
-				href="#" class="btn btn-secondary" role="button"
-				onclick="cancelReservation()"> &laquo; 예약취소</a>
 
-			<!-- 시간에따라 
+
+
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="text-right"><strong></strong></td>
+					<td class="text-center text-danger"><strong>총액 :
+							25000 + 4000</strong></td>
+				</tr>
+			</tfoot>
+		</table>
+		<a href="/" class="btn btn-secondary" role="button"> 홈으로 </a> <a
+			href="/review" class="btn btn-secondary" role="button"> 리뷰작성 </a> <a
+			href="#" class="btn btn-secondary" role="button"
+			onclick="cancelReservation()"> &laquo; 예약취소</a>
+
+		<!-- 시간에따라 
 			<a href="#" class="btn btn-secondary" th:if="${elapsedTime > 0}" th:text="'&laquo; 예약취소 (' + ${elapsedTime} + '분 후 불가능)'"></a>
 			<a href="#" class="btn btn-secondary" th:unless="${elapsedTime > 0}"> &laquo; 예약취소</a> -->
 
-			<a href="#" class="btn btn-secondary" onclick="storetelephone()">
-				&laquo; 전화문의</a>
-		</div>
+		<a href="#" class="btn btn-secondary" onclick="storetelephone()">
+			&laquo; 전화문의</a>
+	</div>
 	</div>
 	<div th:replace="~{fragments/footer::footer}"></div>
 </body>

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class ReservationService {
     private final ReservationMapper reservationMapper;
 
-    public Reservation insert(Reservation reservation, MenuOrder[] menuOrders) {
+    public Reservation insert(Reservation reservation, List<MenuOrder> menuOrders) {
         // 예약 정보 삽입
         reservationMapper.reservationInsert(reservation);
 
@@ -32,5 +32,8 @@ public class ReservationService {
     
     public List<Reservation> list(){
         return reservationMapper.list();
+    }
+    public List<MenuOrder> list2(){
+        return reservationMapper.list2();
     }
 }

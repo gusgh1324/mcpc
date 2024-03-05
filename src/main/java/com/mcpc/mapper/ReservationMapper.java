@@ -12,17 +12,21 @@ import com.mcpc.model.Reservation;
 @Mapper
 public interface ReservationMapper {
 	////
-    @Insert("INSERT INTO menu_order(menu_name, menu_count, reservation_id) VALUES (#{menuOrder.menuName}, #{menuOrder.menuCount}, #{reservationId})")
-    void menuOrderInsert(MenuOrder menuOrder, Long reservationId);
-
-    @Insert("INSERT INTO reservation (person, hour, minute, etc, order_time) VALUES (#{person}, #{hour}, #{minute}, #{etc}, now())")
-    void reservationInsert(Reservation reservation);
+    @Insert("INSERT INTO menu_order(menuname, menucount, reservation_id) VALUES (#{menuOrder.menuName}, #{menuOrder.menuCount}, #{reservationId})")
+    public void menuOrderInsert(MenuOrder menuOrder, Long reservationId);
 
     @Select("SELECT LAST_INSERT_ID()")
-    Long getLastInsertId(); // 삽입한 마지막 행의 ID를 반환하는 쿼리
+    public Long getLastInsertId(); // 삽입한 마지막 행의 ID를 반환하는 쿼리
+    
+    @Insert("INSERT INTO reservation (person, hour, minute, etc, ordertime) VALUES (#{person}, #{hour}, #{minute}, #{etc}, now())")
+    public void reservationInsert(Reservation reservation);
     ////
        
     
     @Select("SELECT * FROM reservation")
-    List<Reservation> list();
+    public List<Reservation> list();
+    
+    @Select("SELECT * FROM menu_order")
+    public List<MenuOrder> list2();
+    
 }
