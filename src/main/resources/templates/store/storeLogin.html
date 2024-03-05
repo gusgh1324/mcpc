@@ -4,19 +4,110 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store Login</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link href="../assets/img/favicon.png" rel="icon">
+<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="../assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link href="../assets/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../assets/css/main.css" rel="stylesheet">
+<style>
+        body {
+            background-color: #f8f9fa; /* 배경색 지정 */
+        }
+        .container {
+            margin-top: 100px; /* 화면 중앙으로 이동 */
+            margin-bottom: 100px;
+        }
+        h2 {
+            text-align: center; /* 가운데 정렬 */
+            margin-bottom: 30px; /* 아래 여백 추가 */
+        }
+        form {
+            background-color: #fff; /* 폼 배경색 지정 */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+        }
+        label {
+            font-weight: bold; /* 라벨 텍스트 굵게 */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%; /* 입력창 너비 전체로 */
+            padding: 10px; /* 입력창 내부 여백 */
+            margin-bottom: 20px; /* 입력창 아래 여백 */
+            border: 1px solid #ced4da; /* 입력창 테두리 */
+            border-radius: 5px; /* 입력창 모서리 둥글게 */
+        }
+        button[type="submit"] {
+            width: 100%; /* 버튼 너비 전체로 */
+            padding: 10px; /* 버튼 내부 여백 */
+            border: none; /* 버튼 테두리 없음 */
+            border-radius: 5px; /* 버튼 모서리 둥글게 */
+            background-color: #007bff; /* 버튼 배경색 */
+            color: #fff; /* 버튼 글자색 */
+            font-weight: bold; /* 버튼 글자 굵게 */
+            cursor: pointer; /* 포인터 모양 변경 */
+            transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
+        }
+    </style>
 </head>
 <body>
-    <h2>사업자 로그인</h2>
-    <form action="storeLogin" method="post">
-        <div>
-            <label for="storeName">상호명:</label>
-            <input type="text" id="storeName" name="storeName">
+ <section id="topbar" class="topbar d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:mechu@google.com">mechu@google.com</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+82 010-0000-0000</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="/" class="/">홈</a>
+      </div>
+    </div>
+  </section><!-- End Top Bar -->
+  
+         <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h2>사업자 로그인</h2>
+                <form action="storeLogin" method="post">
+                    <div>
+                        <label for="storeName">상호명:</label>
+                        <input type="text" id="storeName" name="storeName">
+                    </div>
+                    <div>
+                        <label for="storePassword">비밀번호:</label>
+                        <input type="password" id="storePassword" name="storePassword">
+                    </div>
+                    <button type="submit">로그인</button>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="storePassword">비밀번호:</label>
-            <input type="password" id="storePassword" name="storePassword">
-        </div>
-        <button type="submit">로그인</button>
-    </form>
+    </div>
+    
+    <div th:replace="~{fragments/footer::footer}"></div>
+    
 </body>
 </html>

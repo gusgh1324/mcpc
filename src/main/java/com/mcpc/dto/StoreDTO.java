@@ -15,11 +15,5 @@ public class StoreDTO {
 	
 	private String storeName; // 상호명
 	private String storePassword; // 가게 비밀번호
-	
-	private String category; // 카테고리
-	private String image; // 이미지
-	private String mainMenu; // 대표 메뉴
-	private String menuPrice; // 대표 메뉴 가격
-	private String priminum; // 광고
 	private String offDay; // 휴무일
 }
