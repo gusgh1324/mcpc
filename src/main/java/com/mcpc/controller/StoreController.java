@@ -64,7 +64,7 @@ public class StoreController {
         // 여기서는 storeName을 세션에 저장합니다.
         String storeName = storeDTO.getStoreName(); // 가게 이름을 로그인 아이디로 가정
         session.setAttribute("storeName", storeName); // storeName을 세션에 저장
-        return "redirect:/store/home"; // 로그인 성공 후 home 페이지로 이동
+        return "redirect:/home"; // 로그인 성공 후 home 페이지로 이동
     }
 
     // home 페이지로 이동
