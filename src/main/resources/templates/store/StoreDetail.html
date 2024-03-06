@@ -144,6 +144,7 @@ h2 {
 				</div>
 				<button type="button" id="addMainMenuField">대표 메뉴 추가</button>
 			</div>
+			
 			<br />
 			<!-- 일반 메뉴 -->
 			<div id="additionalMenuFields">
@@ -187,6 +188,8 @@ h2 {
                     <label for="price${mainMenuFieldIndex}">메뉴 가격:</label>
                     <input type="number" id="price${mainMenuFieldIndex}" name="price${mainMenuFieldIndex}">
                 </div>
+                <button type="button" class="addMenuButton">메뉴 추가</button> <!-- 추가 버튼 -->
+                <button type="button" class="deleteMenuButton">메뉴 삭제</button> <!-- 삭제 버튼 -->
             `;
             storeDetailFields.appendChild(newFieldSet);
             mainMenuFieldIndex++; // 필드 인덱스 증가
@@ -209,9 +212,28 @@ h2 {
                     <label for="price${additionalMenuFieldIndex}">메뉴 가격:</label>
                     <input type="number" id="price${additionalMenuFieldIndex}" name="price${additionalMenuFieldIndex}">
                 </div>
+                <button type="button" class="addMenuButton">메뉴 추가</button> <!-- 추가 버튼 -->
+                <button type="button" class="deleteMenuButton">메뉴 삭제</button> <!-- 삭제 버튼 -->
             `;
             additionalMenuFields.appendChild(newFieldSet);
             additionalMenuFieldIndex++; // 필드 인덱스 증가
+        });
+     // 추가 버튼 클릭 시 해당 메뉴 영역 복제
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('addMenuButton')) {
+                var fieldset = event.target.parentElement;
+                var clone = fieldset.cloneNode(true);
+                additionalMenuFieldIndex++;
+                fieldset.parentNode.insertBefore(clone, fieldset.nextSibling);
+            }
+        });
+
+        // 삭제 버튼 클릭 시 해당 메뉴 영역 삭제
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('deleteMenuButton')) {
+                var fieldset = event.target.parentElement;
+                fieldset.remove();
+            }
         });
     </script>
 

@@ -25,9 +25,6 @@ public class StoreDTO {
 	@Column(name = "storepassword")
 	private String storePassword; // 가게 비밀번호
 	
-	@Column(name = "offday")
-	private String offDay; // 휴무일
-	
     public boolean isValid() {
         return !StringUtils.isEmpty(storeName) && !StringUtils.isEmpty(storePassword);
     }
