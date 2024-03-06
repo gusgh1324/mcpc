@@ -28,4 +28,5 @@ public interface ReservationMapper {
     
     @Select("SELECT MAX(id) FROM reservation")
     public int getMaxInsertId();
+    
 }

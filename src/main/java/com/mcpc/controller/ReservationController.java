@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,12 +54,32 @@ public class ReservationController {
  // 영수증 확인
     @GetMapping("/order")
     public String order(Model model) {
-    	int lastOrderId = reservationService.getMaxInsertId();
-        model.addAttribute("lastOrderId", lastOrderId);
-        // 예약 서비스에서 예약 목록을 가져와 모델에 추가
-        model.addAttribute("reservations", reservationService.list());
-        model.addAttribute("menuOrders", reservationService.list2());
-        return "reservation/order";
+        List<Reservation> reservations = reservationService.list();
+        if (reservations.isEmpty()) {
+            return "reservation/reorder"; 
+        } else {
+            int lastOrderId = reservationService.getMaxInsertId();
+            model.addAttribute("lastOrderId", lastOrderId);
+            model.addAttribute("reservations", reservations);
+            model.addAttribute("menuOrders", reservationService.list2());
+            return "reservation/order";
+        }
     }
+    // 주문내역리스트
+    @GetMapping("/list")
+    public String reorder(Model model) {
+    	List<Reservation> reservations = reservationService.list();
+    	if (reservations.isEmpty()) {
+    		return "reservation/reorder"; 
+    	} else {
+    		int lastOrderId = reservationService.getMaxInsertId();
+    		model.addAttribute("lastOrderId", lastOrderId);
+    		model.addAttribute("reservations", reservations);
+    		model.addAttribute("menuOrders", reservationService.list2());
+    		return "reservation/list";
+    	}
+    }
+    
+ 
 
 }
