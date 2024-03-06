@@ -51,7 +51,7 @@ public class UserController {
 	    UserDTO user = userService.login(userId, userPassword);
 	    if (user != null) {
 	        session.setAttribute("user", user);
-	        return "redirect:/user/home"; // 로그인 성공 시 홈 페이지로 리다이렉트합니다.
+	        return "redirect:/home"; // 로그인 성공 시 홈 페이지로 리다이렉트합니다.
 	    } else {
 	        return "user/login"; // 로그인 실패 시 다시 로그인 페이지로 이동합니다.
 	    }

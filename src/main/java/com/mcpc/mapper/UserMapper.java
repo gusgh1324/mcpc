@@ -10,7 +10,7 @@ import com.mcpc.dto.UserDTO;
 @Mapper
 public interface UserMapper {
 	// 회원가입
-    @Insert("INSERT INTO user (userId, userPassword, userEmail, userName, userBirth, userGender, userPNumber) " +
+    @Insert("INSERT INTO user (userid, userpassword, useremail, username, userbirth, usergender, userpnumber) " +
             "VALUES (#{userId}, #{userPassword}, #{userEmail}, #{userName}, #{userBirth}, #{userGender}, #{userPNumber})")
     void join(UserDTO user);
     
