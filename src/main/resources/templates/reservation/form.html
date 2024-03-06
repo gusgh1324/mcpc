@@ -90,8 +90,8 @@
 				</div>
 				<div class="col-sm-2">
 					<select name="minute" id="minute" class="form-control">
-						<option th:each="number : ${#numbers.sequence(0, 50 ,10)}"
-							th:value="${number}" th:text="${number+'분'}">0
+						<option th:each="number : ${#numbers.sequence(00, 50 ,10)}"
+							th:value="${number}" th:text="${number+'분'}">00
 							<!--현재시간 받아오기--></option>
 					</select>
 				</div>

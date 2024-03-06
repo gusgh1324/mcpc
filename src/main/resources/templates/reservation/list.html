@@ -54,13 +54,11 @@
 			</thead>
 			<tbody>
 				<tr th:each="reservation : ${reservations}">
-					<th:block th:if="${reservation.id == lastOrderId}">
 						<td class="text-center" th:text="${reservation.id}">주문번호</td>
 						<td class="text-center" th:text="${reservation.hour + ' : ' +reservation.minute+'분'}"></td>
 						<td class="text-center" th:text="${#dates.format(reservation.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
 						<td class="text-center" th:text="${reservation.person}"></td>
 						<td class="text-center" th:text="${reservation.etc}">소계</td>
-					</th:block>
 				</tr>
 			</tbody>
 		</table>
