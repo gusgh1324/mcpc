@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,13 +26,14 @@ public class ReservationController {
 
     // 예약하러가기
     @GetMapping("/form")
-    public String form() {
+    public String form(Model model) {
+        model.addAttribute("reservation", new Reservation());
         return "reservation/form";
     }
 
     // 예약하기
     @PostMapping("/form")
-    public String form(Reservation reservation, @RequestParam("orderMenu") List<String> orderMenus,
+    public String form(@ModelAttribute("reservation") Reservation reservation, @RequestParam("orderMenu") List<String> orderMenus,
             @RequestParam("menuCount") List<Integer> menuCounts, Model model) {
         List<MenuOrder> menuOrders = new ArrayList<>();
         for (int i = 0; i < orderMenus.size(); i++) {
@@ -54,7 +56,7 @@ public class ReservationController {
     	int lastOrderId = reservationService.getMaxInsertId();
         model.addAttribute("lastOrderId", lastOrderId);
         // 예약 서비스에서 예약 목록을 가져와 모델에 추가
-        model.addAttribute("reservation", reservationService.list());
+        model.addAttribute("reservations", reservationService.list());
         model.addAttribute("menuOrders", reservationService.list2());
         return "reservation/order";
     }
