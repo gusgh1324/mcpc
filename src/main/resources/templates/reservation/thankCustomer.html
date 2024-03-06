@@ -44,18 +44,24 @@
 	<div th:replace=" ~{fragments/header::header}"></div>
 
 	<div class="jumbotron">
+
 		<div class="container">
 			<h1 class="display-3">주문 완료</h1>
 		</div>
 	</div>
 
+
 	<div class="container">
+		<div class="row justify-content-between">
+			<p style="color:gray;" th:text="'주문시간 : ' + ${#dates.format(#dates.createNow(), 'yyyy-MM-dd / HH:mm')}">주문시간</p>
+		</div>
 		<h2 class="alert alert-danger">예약해주셔서 감사합니다.</h2>
 
 	</div>
 
 
 	<div class="container">
+
 		<p>
 			<a href="order" class="btn btn-secondary"> 주문내역</a>
 		</p>
