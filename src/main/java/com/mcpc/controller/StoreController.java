@@ -36,21 +36,24 @@ public class StoreController {
 	    return "store/storeJoin";
 	}
 
-    // 회원가입 처리
-    @PostMapping("storeJoin")
-    public String join(StoreDTO storeDTO, RedirectAttributes redirectAttributes) {
-        if (!storeDTO.isValid()) {
-            return "store/storeJoin"; // 유효성 검사에 실패하면 다시 회원가입 페이지로 이동
-        }
-        try {
-            storeService.storeJoin(storeDTO);
-            redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인해주세요.");
-            return "redirect:/store/storeLogin"; // 회원가입 성공 후 로그인 페이지로 이동
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error"; // 오류 페이지로 이동 또는 오류 메시지 표시
-        }
-    }
+	// 회원가입 처리
+	@PostMapping("storeJoin")
+	public String join(StoreDTO storeDTO, RedirectAttributes redirectAttributes) {
+	    // 빈 칸 확인
+	    if (storeDTO.getStoreName().isEmpty() || storeDTO.getStorePassword().isEmpty()) {
+	        redirectAttributes.addFlashAttribute("error", "빈 칸을 모두 입력해주세요.");
+	        return "redirect:/store/storeJoin"; // 빈 칸이 있으면 다시 회원가입 페이지로 이동
+	    }
+	    try {
+	        storeService.storeJoin(storeDTO);
+	        redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인해주세요.");
+	        // 3초 후에 로그인 페이지로 이동
+	        return "redirect:/store/storeLogin"; 
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "error"; // 오류 페이지로 이동 또는 오류 메시지 표시
+	    }
+	}
 
     // 로그인 페이지로 이동
     @GetMapping("storeLogin")
@@ -67,6 +70,13 @@ public class StoreController {
         return "redirect:/home"; // 로그인 성공 후 home 페이지로 이동
     }
 
+    // 로그아웃 처리
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        // 세션에서 사용자 정보 삭제
+        session.removeAttribute("authenticatedUser");
+        return "redirect:/store/storeLogin"; // 로그아웃 후 로그인 페이지로 이동
+    }
     // home 페이지로 이동
     @GetMapping("home")
     public String home(HttpSession session, Model model) {
