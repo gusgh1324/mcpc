@@ -40,7 +40,7 @@ public class StoreController {
 	@PostMapping("storeJoin")
 	public String join(StoreDTO storeDTO, RedirectAttributes redirectAttributes) {
 	    // 빈 칸 확인
-	    if (storeDTO.getStoreName().isEmpty() || storeDTO.getStorePassword().isEmpty()) {
+	    if (storeDTO.getSName().isEmpty() || storeDTO.getSPw().isEmpty()) {
 	        redirectAttributes.addFlashAttribute("error", "빈 칸을 모두 입력해주세요.");
 	        return "redirect:/store/storeJoin"; // 빈 칸이 있으면 다시 회원가입 페이지로 이동
 	    }
@@ -65,7 +65,7 @@ public class StoreController {
     @PostMapping("storeLogin")
     public String login(StoreDTO storeDTO, HttpSession session, RedirectAttributes redirectAttributes) {
         // 여기서는 storeName을 세션에 저장합니다.
-        String storeName = storeDTO.getStoreName(); // 가게 이름을 로그인 아이디로 가정
+        String storeName = storeDTO.getSName(); // 가게 이름을 로그인 아이디로 가정
         session.setAttribute("storeName", storeName); // storeName을 세션에 저장
         return "redirect:/home"; // 로그인 성공 후 home 페이지로 이동
     }
@@ -101,7 +101,7 @@ public class StoreController {
         String storeName = (String ) session.getAttribute("storeName");
         try {
             byte[] imageData = imageFile.getBytes();
-            storeDetailDTO.setImage(new String(imageData)); // 이미지 처리
+            //storeDetailDTO.setImage(new String(imageData)); // 이미지 처리
             redirectAttributes.addFlashAttribute("message", "메뉴가 성공적으로 추가되었습니다.");
             return "redirect:/store/home"; // 메뉴 추가 후 home 페이지로 이동
         } catch (Exception e) {
