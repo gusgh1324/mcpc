@@ -16,7 +16,7 @@ public class HomeController {
 	public String review() {
 		return "review";
 	}
-	//////test
+	//////test2
 	
 	
 	
