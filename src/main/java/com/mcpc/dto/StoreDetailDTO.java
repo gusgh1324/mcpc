@@ -17,7 +17,6 @@ import lombok.Setter;
 @Entity
 @Table(name="store_detail")
 public class StoreDetailDTO {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "snum")
 	private Long sNum; // 가게 아이디, 자동으로 부여
 	

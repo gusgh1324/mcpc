@@ -100,7 +100,7 @@ h2 {
 	</section>
 	<!-- End Top Bar -->
 	<div class="container">
-		<h2>상세 추가</h2>
+		<h2>상세 정보</h2>
 		<form action="storeDetail" method="post" id="storeDetailForm"
 			enctype="multipart/form-data">
 			<div id="storeDetailFields">
@@ -129,113 +129,10 @@ h2 {
 						for="sunday">일</label>
 				</div>
 				<br />
-				<!-- 대표 메뉴 -->
-				<div class="store-detail-field">
-					<label for="mainMenu">대표 메뉴:</label> <input type="text"
-						id="mainMenu" name="mainMenu">
-				</div>
-				<div class="store-detail-field">
-					<label for="image">대표 메뉴 사진:</label> <input type="file" id="image"
-						name="image">
-				</div>
-				<div class="store-detail-field">
-					<label for="menuPrice">대표 메뉴 가격:</label> <input type="text"
-						id="menuPrice" name="menuPrice">
-				</div>
-				<button type="button" id="addMainMenuField">대표 메뉴 추가</button>
-			</div>
-			
-			<br />
-			<!-- 일반 메뉴 -->
-			<div id="additionalMenuFields">
-				<div class="store-detail-field">
-					<label for="image1">메뉴 사진:</label> <input type="file" id="image1"
-						name="imageFile">
-				</div>
-				<div class="store-detail-field">
-					<label for="menu1">메뉴 이름:</label> <input type="text" id="menu1"
-						name="menu1">
-				</div>
-				<div class="store-detail-field">
-					<label for="price1">메뉴 가격:</label> <input type="number" id="price1"
-						name="price1">
-				</div>
-				<button type="button" id="addAdditionalMenuField">일반 메뉴 추가</button>
-			</div>
-			<br />
+
 			<button type="submit">저장</button>
 		</form>
 	</div>
-
-	<script>
-        var mainMenuFieldIndex = 2; // 대표 메뉴 필드 인덱스 초기값 설정
-        var additionalMenuFieldIndex = 2; // 추가 메뉴 필드 인덱스 초기값 설정
-
-        document.getElementById('addMainMenuField').addEventListener('click', function() {
-            var storeDetailFields = document.getElementById('storeDetailFields');
-            var newFieldSet = document.createElement('div');
-            newFieldSet.classList.add('store-detail-field');
-            newFieldSet.innerHTML = `
-                <div>
-                    <label for="image${mainMenuFieldIndex}">대표 메뉴 사진:</label>
-                    <input type="file" id="image${mainMenuFieldIndex}" name="image${mainMenuFieldIndex}">
-                </div>
-                <div>
-                    <label for="menu${mainMenuFieldIndex}">메뉴 이름:</label>
-                    <input type="text" id="menu${mainMenuFieldIndex}" name="menu${mainMenuFieldIndex}">
-                </div>
-                <div>
-                    <label for="price${mainMenuFieldIndex}">메뉴 가격:</label>
-                    <input type="number" id="price${mainMenuFieldIndex}" name="price${mainMenuFieldIndex}">
-                </div>
-                <button type="button" class="addMenuButton">메뉴 추가</button> <!-- 추가 버튼 -->
-                <button type="button" class="deleteMenuButton">메뉴 삭제</button> <!-- 삭제 버튼 -->
-            `;
-            storeDetailFields.appendChild(newFieldSet);
-            mainMenuFieldIndex++; // 필드 인덱스 증가
-        });
-
-        document.getElementById('addAdditionalMenuField').addEventListener('click', function() {
-            var additionalMenuFields = document.getElementById('additionalMenuFields');
-            var newFieldSet = document.createElement('div');
-            newFieldSet.classList.add('store-detail-field');
-            newFieldSet.innerHTML = `
-                <div>
-                    <label for="image${additionalMenuFieldIndex}">메뉴 사진:</label>
-                    <input type="file" id="image${additionalMenuFieldIndex}" name="image${additionalMenuFieldIndex}">
-                </div>
-                <div>
-                    <label for="menu${additionalMenuFieldIndex}">메뉴 이름:</label>
-                    <input type="text" id="menu${additionalMenuFieldIndex}" name="menu${additionalMenuFieldIndex}">
-                </div>
-                <div>
-                    <label for="price${additionalMenuFieldIndex}">메뉴 가격:</label>
-                    <input type="number" id="price${additionalMenuFieldIndex}" name="price${additionalMenuFieldIndex}">
-                </div>
-                <button type="button" class="addMenuButton">메뉴 추가</button> <!-- 추가 버튼 -->
-                <button type="button" class="deleteMenuButton">메뉴 삭제</button> <!-- 삭제 버튼 -->
-            `;
-            additionalMenuFields.appendChild(newFieldSet);
-            additionalMenuFieldIndex++; // 필드 인덱스 증가
-        });
-     // 추가 버튼 클릭 시 해당 메뉴 영역 복제
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('addMenuButton')) {
-                var fieldset = event.target.parentElement;
-                var clone = fieldset.cloneNode(true);
-                additionalMenuFieldIndex++;
-                fieldset.parentNode.insertBefore(clone, fieldset.nextSibling);
-            }
-        });
-
-        // 삭제 버튼 클릭 시 해당 메뉴 영역 삭제
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('deleteMenuButton')) {
-                var fieldset = event.target.parentElement;
-                fieldset.remove();
-            }
-        });
-    </script>
 
 	<div th:replace="~{fragments/footer::footer}"></div>
 

@@ -18,6 +18,8 @@ import lombok.Setter;
 @Getter @Setter
 @Entity(name = "store_menu")
 public class StoreMenuDTO {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "snum")
 	private Long sNum;
 	
