@@ -15,12 +15,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="storedetail")
+@Table(name="store_detail")
 public class StoreDetailDTO {
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "storeid")
-    private Long storeId; // 가게 아이디
+	@Column(name = "snum")
+	private Long sNum; // 가게 아이디, 자동으로 부여
+	
+	@Column(name = "mnum")
+	private Long mNum;
     
     private String priminum; // 광고
     
@@ -28,22 +29,5 @@ public class StoreDetailDTO {
     
     @Column(name = "offday")
     private String offDay; // 휴무일
-    
-    // 대표 메뉴
-    @Column(name = "mainimage")
-    private String mainImage; // 이미지
-    @Column(name = "mainmenu")
-    private String mainMenu; // 대표 메뉴
-    @Column(name = "menuprice")
-    private String menuPrice; // 대표 메뉴 가격
-    
-    // 일반 메뉴
-    private String image; // 이미지
-    private String menu; // 메뉴 이름
-    private int price; // 가격
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storeid")
-    private StoreDTO storeDTO; // StoreDTO와의 일대일 관계
     
 }

@@ -16,18 +16,31 @@ import lombok.Setter;
 @Table(name="store")
 public class StoreDTO {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "storeid")
-	private Long storeId; // 가게 아이디, 자동으로 부여
+	@Column(name = "snum")
+	private Long sNum; // 가게 아이디, 자동으로 부여
 	
-	@Column(name = "storename")
-	private String storeName; // 상호명
+	@Column(name = "sid")
+	private String sId; // 아이디
 	
-	@Column(name = "storepassword")
-	private String storePassword; // 가게 비밀번호
+	@Column(name = "spw")
+	private String sPw; // 가게 비밀번호
 	
+<<<<<<< HEAD
 	
 	
     public boolean isValid() {
         return !StringUtils.isEmpty(storeName) && !StringUtils.isEmpty(storePassword);
     }
+=======
+	@Column(name = "sname")
+	private String sName; // 상호명
+	
+	@Column(name = "smobile")
+	private int sMobile; // 전화번호
+	
+	@Column(name = "sbnum")
+	private int sBNum; // 사업자 번호 Business Number
+
+	
+>>>>>>> branch 'master' of https://github.com/gusgh1324/mcpc.git
 }
