@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
@@ -16,8 +18,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="../assets/img/favicon.png" rel="icon">
-<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="../../assets/img/favicon.png" rel="icon">
+<link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,18 +29,18 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="../../assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="../assets/vendor/glightbox/css/glightbox.min.css"
+<link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="../../assets/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="../assets/vendor/swiper/swiper-bundle.min.css"
+<link href="../../assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="../assets/css/main.css" rel="stylesheet">
+<link href="../../assets/css/main.css" rel="stylesheet">
 
 <style>
 body {
@@ -72,6 +74,64 @@ button[type="submit"]:hover {
 }
 </style>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script >
+	$(document).ready(function(){
+		$("#btnJoin").click(function() {
+			// 유효성 검사
+			if ($("#uName").val() == "") {
+				alert("이름을 입력하세요")
+				$("#uName").focus();
+				return false;
+			}
+			if ($("#uId").val() == "") {
+				alert("아이디를 입력하세요")
+				$("#uId").focus();
+				return false;
+			}
+			if ($("#uPw").val() == "") {
+				alert("비밀번호를 입력하세요")
+				$("#uPw").focus();
+				return false;
+			}
+			
+			if ($("#uMobile").val() == "") {
+				alert("전화번호를 입력하세요")
+				$("#uMobile").focus();
+				return false;
+			}
+
+			data = {
+				id : $("#uId").val(),
+				name : $("#uName").val(),
+				password : $("#uPw").val(),
+			}
+			$.ajax({
+				type : "post",
+				url : "/login/user/join",
+				contentType : "application/json;charset=utf-8",
+				data : JSON.stringify(data)
+			}) //ajax
+			.done(function(resp) {
+				if (resp == "success") {
+					alert("회원가입을 축하합니다.")
+					$("#idcheck").html("")
+					location.href = "login"
+
+				} else if (resp == "fail") {
+					//alert("아이디 중복확인하세요");
+					$("#idcheck").html("<b>아이디 중복확인 하세요</b>")
+					$("#id").val("")
+				}
+			}) //done
+			.fail(function(e) {
+				alert("회원가입실패")
+			}) //fail
+		}) //btnJoin
+		
+	})//	 document
+	</script>
+
 </head>
 <body>
 
@@ -95,8 +155,8 @@ button[type="submit"]:hover {
             <input type="text" id="uId" name="uId" class="form-control">
         </div>
         <div class="form-group">
-            <label for="uPW">비밀번호:</label>
-            <input type="password" id="uPW" name="uPW" class="form-control">
+            <label for="uPw">비밀번호:</label>
+            <input type="password" id="uPw" name="uPw" class="form-control">
         </div>
         <div class="form-group">
             <label for="uEmail">이메일:</label>
@@ -121,7 +181,7 @@ button[type="submit"]:hover {
             <label for="uMobile">전화번호:</label>
             <input type="text" id="uMobile" name="uMobile" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">회원가입</button>
+       <button type="button" class="btn btn-secondary" id="btnJoin">회원가입</button>
     </form>
 </div>
 

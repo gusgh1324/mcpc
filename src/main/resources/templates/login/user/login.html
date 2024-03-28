@@ -16,8 +16,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="../assets/img/favicon.png" rel="icon">
-<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="../../assets/img/favicon.png" rel="icon">
+<link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,18 +27,18 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="../../assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="../assets/vendor/glightbox/css/glightbox.min.css"
+<link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="../../assets/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="../assets/vendor/swiper/swiper-bundle.min.css"
+<link href="../../assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="../assets/css/main.css" rel="stylesheet">
+<link href="../../assets/css/main.css" rel="stylesheet">
 
 <style>
 body {
@@ -75,6 +75,38 @@ button[type="submit"]:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	$("#btnLogin").click(function() {
+		$.ajax({
+            type : "post",
+            url : '/login/user/login',
+            contentType : 'application/json;charset=utf-8',
+            data : JSON.stringify({
+                uId : $("#uId").val(),
+                uPw : $("#uPw").val()
+            })
+        }).done(function(resp) {
+            if (resp == "no") {
+                alert("회원이 아닙니다. 회원가입하세요")
+                location.href = "/login/user/join"
+            } else if (resp == "success") {
+                alert("로그인 성공")
+                location.href = "/home"; // 로그인 성공 시 리다이렉트할 페이지
+            } else { // 비밀번호 오류
+                alert("비밀번호를 확인하세요")
+            }
+        }).fail(function() {
+            alert("로그인 실패")
+        })
+    });
+});
+
+</script>
+
 </head>
 <body>
 <section id="topbar" class="topbar d-flex align-items-center">
@@ -99,10 +131,10 @@ button[type="submit"]:hover {
                         <input type="text" id="uId" name="uId" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="uPW">비밀번호:</label>
-                        <input type="password" id="uPW" name="uPW" class="form-control">
+                        <label for="uPw">비밀번호:</label>
+                        <input type="password" id="uPw" name="uPw" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">로그인</button>
+                    <button type="submit" class="btn btn-secondary">로그인</button>
                 </form>
             </div>
         </div>
