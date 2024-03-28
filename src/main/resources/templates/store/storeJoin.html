@@ -70,7 +70,7 @@
             font-weight: bold; /* 라벨 텍스트 굵게 설정 */
         }
 
-        button[type="submit"] {
+        button {
             background-color: #007bff; /* 버튼 배경색 설정 */
             color: #ffffff; /* 버튼 텍스트 색상 설정 */
             border: none; /* 버튼 테두리 제거 */
@@ -81,7 +81,7 @@
             width: 100%; /* 버튼 넓이 설정 */
         }
 
-        button[type="submit"]:hover {
+        button:hover {
             background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
         }
     </style>
@@ -103,18 +103,31 @@
         <form action="storeJoin" method="post">
             <h2>사업자 회원가입</h2>
             <div class="form-group">
-                <label for="storeName">상호명:</label>
-                <input type="text" id="storeName" name="storeName" class="form-control">
+                <label for="sId">아이디:</label>
+                <input type="text" id="sId" name="sId" class="form-control">
             </div>
             <div class="form-group">
-                <label for="storePassword">비밀번호:</label>
-                <input type="password" id="storePassword" name="storePassword" class="form-control">
+                <label for="sPw">비밀번호:</label>
+                <input type="password" id="sPw" name="sPw" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="sName">상호명:</label>
+                <input type="text" id="sName" name="sName" class="form-control">
+            </div><div class="form-group">
+                <label for="sMobile">전화번호:</label>
+                <input type="text" id="sMobile" name="sMobile" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="sBNum">사업자 번호:</label>
+                <input type="text" id="sBNum" name="sBNum" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">회원가입</button>
+            <button type="button" onclick="window.location.href='/'">취소</button>
+            <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+    		<div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
         </form>
     </div>
     
     <div th:replace="~{fragments/footer::footer}"></div>
-    
 </body>
 </html>
