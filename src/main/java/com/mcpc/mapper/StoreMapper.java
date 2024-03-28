@@ -14,8 +14,8 @@ import com.mcpc.dto.StoreDetailDTO;
 @Mapper
 public interface StoreMapper {
 	// 회원가입
-	@Insert("INSERT INTO store (storeName, storePassword) " +
-            "VALUES (#{storeName},#{storePassword} )")
+	@Insert("INSERT INTO store (sid, spw, sname, smobile, businessnumr) " +
+            "VALUES (#{sId},#{sPw},#{sName},#{sMobile},#{businessNum} )")
     void storeJoin(StoreDTO storeDTO);
 
 	// 모든 가게 정보 가져오기
