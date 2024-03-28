@@ -44,11 +44,11 @@ public class UserController {
 	}
 
 	@PostMapping("login")
-	public String login(@RequestParam("userId") String userId,
-	                    @RequestParam("userPassword") String userPassword,
+	public String login(@RequestParam("uId") String uId,
+	                    @RequestParam("uPW") String uPW,
 	                    HttpSession session) {
 	    // 로그인 로직 수행
-	    UserDTO user = userService.login(userId, userPassword);
+	    UserDTO user = userService.login(uId, uPW);
 	    if (user != null) {
 	        session.setAttribute("user", user);
 	        return "redirect:/home"; // 로그인 성공 시 홈 페이지로 리다이렉트합니다.

@@ -81,33 +81,8 @@ public class StoreController {
     @GetMapping("home")
     public String home(HttpSession session, Model model) {
         // 세션에서 storeName을 가져와서 모델에 추가
-        String storeName = (String) session.getAttribute("storeName");
-        model.addAttribute("storeName", storeName);
+        String sId = (String) session.getAttribute("sId");
+        model.addAttribute("sId", sId);
         return "home";
     }
-
-    // 메뉴 추가 페이지로 이동
-    @GetMapping("storeDetail")
-    public String storeDetail(HttpSession session, Model model) {
-        String storeName = (String) session.getAttribute("storeName");
-        model.addAttribute("storeName", storeName);
-        model.addAttribute("storeDetailDTO", new StoreDetailDTO());
-        return "store/storeDetail";
-    }
-
-    // 메뉴 추가 처리
-    @PostMapping("storeDetail")
-    public String addStoreDetail(HttpSession session, StoreDetailDTO storeDetailDTO, @RequestParam("imageFile") MultipartFile imageFile, RedirectAttributes redirectAttributes) {
-        String storeName = (String ) session.getAttribute("storeName");
-        try {
-            byte[] imageData = imageFile.getBytes();
-            //storeDetailDTO.setImage(new String(imageData)); // 이미지 처리
-            redirectAttributes.addFlashAttribute("message", "메뉴가 성공적으로 추가되었습니다.");
-            return "redirect:/store/home"; // 메뉴 추가 후 home 페이지로 이동
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error"; // 오류 페이지로 이동 또는 오류 메시지 표시
-        }
-    }
-
 }
