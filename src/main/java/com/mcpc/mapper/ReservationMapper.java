@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.mcpc.model.MenuOrder;
-import com.mcpc.model.Reservation;
+import com.mcpc.dto.MenuOrder;
+import com.mcpc.dto.Reservation;
 
 @Mapper
 public interface ReservationMapper {

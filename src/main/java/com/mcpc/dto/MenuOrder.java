@@ -1,4 +1,4 @@
-package com.mcpc.model;
+package com.mcpc.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

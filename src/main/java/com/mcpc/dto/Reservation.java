@@ -1,4 +1,4 @@
-package com.mcpc.model;
+package com.mcpc.dto;
 
 import java.sql.Timestamp;
 import java.util.List;

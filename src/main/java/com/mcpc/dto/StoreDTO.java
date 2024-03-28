@@ -25,6 +25,8 @@ public class StoreDTO {
 	@Column(name = "storepassword")
 	private String storePassword; // 가게 비밀번호
 	
+	
+	
     public boolean isValid() {
         return !StringUtils.isEmpty(storeName) && !StringUtils.isEmpty(storePassword);
     }

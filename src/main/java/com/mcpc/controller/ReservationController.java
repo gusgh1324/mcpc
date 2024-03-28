@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mcpc.model.MenuOrder;
-import com.mcpc.model.Reservation;
+import com.mcpc.dto.MenuOrder;
+import com.mcpc.dto.Reservation;
 import com.mcpc.service.ReservationService;
 
 @Controller

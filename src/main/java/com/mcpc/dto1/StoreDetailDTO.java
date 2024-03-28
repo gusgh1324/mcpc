@@ -1,13 +1,10 @@
-package com.mcpc.dto.StoreTest;
+package com.mcpc.dto1;
 
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,22 +15,29 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
-@Table(name = "store_detail")
-public class StoreDetail {
-    @Id
+@Table(name="store_detail")
+public class StoreDetailDTO {
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long dnum;
-    @Column(name = "offday")
-    private String offDay;
-    private String category;
+    @Column(name = "dnum")
+    private Long dNum; 
     
-    @OneToMany(mappedBy = "storeDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("storeDetail")
-    private List<StoreMenu> storeMenu;
+    
+    private String premium; // 광고
+    
+    private String category; // 카테고리
+    
+    @Column(name = "offday")
+    private String offDay; // 휴무일
     
     @ManyToOne
     @JoinColumn(name = "snum")
-    private Store store;
+    private StoreDTO storeDTO; 
+    
+    @OneToMany(mappedBy = "storeDetailDTO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StoreMenuDTO> storeMenuDTO;
+    
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mcpc.dto.MenuOrder;
+import com.mcpc.dto.Reservation;
 import com.mcpc.mapper.ReservationMapper;
-import com.mcpc.model.MenuOrder;
-import com.mcpc.model.Reservation;
 
 import lombok.RequiredArgsConstructor;
 
