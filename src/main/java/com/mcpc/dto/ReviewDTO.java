@@ -1,4 +1,4 @@
-package com.mcpc.dto1;
+package com.mcpc.dto;
 
 import java.util.Date;
 import java.util.List;

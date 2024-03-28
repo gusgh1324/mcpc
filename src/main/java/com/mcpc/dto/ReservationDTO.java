@@ -1,14 +1,43 @@
 package com.mcpc.dto;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+
+@Getter
+@Setter
+@Entity
+@Table(name="Reservation")
 public class ReservationDTO {
-//    private List<String> OrderMenu; //주문메뉴
-//    private List<Integer> OrderMenuCount;//주문메뉴 갯수
-//    private int person; //인원수
-//    private int hour; //예약시간
-//    private int minute; //예약시간
-//    private String etc; //요청사항
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "rnum")
+    private Long rNum;
+
+    private int person;
+    private int hour;
+    private int minute;
+    private String etc;
+    @Column(name = "ordertime")
+    private Date orderTime;
+    
+    @ManyToOne
+    @JoinColumn(name = "snum")
+    private StoreDTO storeDTO;
+    
+    @ManyToOne
+    @JoinColumn(name = "unum")
+    private UserDTO userDTO;
+
+
 }

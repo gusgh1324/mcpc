@@ -1,13 +1,16 @@
 package com.mcpc.dto;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,17 +20,24 @@ import lombok.Setter;
 @Entity
 @Table(name="store_detail")
 public class StoreDetailDTO {
-	@Column(name = "snum")
-	private Long sNum; // 가게 아이디, 자동으로 부여
-	
-	@Column(name = "mnum")
-	private Long mNum;
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dnum")
+    private Long dNum; 
     
-    private String priminum; // 광고
+    
+    private String premium; // 광고
     
     private String category; // 카테고리
     
     @Column(name = "offday")
     private String offDay; // 휴무일
+    
+    @ManyToOne
+    @JoinColumn(name = "snum")
+    private StoreDTO storeDTO; 
+    
+    @OneToMany(mappedBy = "storeDetailDTO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StoreMenuDTO> storeMenuDTO;
     
 }
