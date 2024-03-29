@@ -1,6 +1,5 @@
 package com.mcpc.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mcpc.dto.UserDTO;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
-	@Autowired
 	private final UserServiceMapper userServiceMapper;
 
 	@Override

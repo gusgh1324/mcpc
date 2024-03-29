@@ -2,12 +2,21 @@ package com.mcpc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mcpc.dto.ReMenuOrderDTO;
+import com.mcpc.dto.ReservationDTO;
+import com.mcpc.service.ReservationService;
+
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/reservation/*")
 public class ReservationController {
+	private final ReservationService reservationService;
 
 	@GetMapping("/")
 	public String home() {
@@ -19,6 +28,19 @@ public class ReservationController {
 	public String form() {
 		return "/reservation/form";
 	}
+	@PostMapping("form")
+	public String formInsert(ReservationDTO reservation, ReMenuOrderDTO reMenuOrder) {
+		reservationService.insert(reservation, reMenuOrder);
+		return "/reservation/thankCustomer";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("list")
 	public String list() {
 		return "/reservation/list";

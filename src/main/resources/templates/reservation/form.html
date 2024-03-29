@@ -42,6 +42,29 @@
 </head>
 
 <body>
+<section id="topbar" class="topbar d-flex align-items-center">
+		<div
+			class="container d-flex justify-content-center justify-content-md-between">
+			<div class="contact-info d-flex align-items-center">
+				<i class="bi bi-envelope d-flex align-items-center"><a
+					href="mailto:mechu@google.com">mechu@google.com</a></i> <i
+					class="bi bi-phone d-flex align-items-center ms-4"><span>+82
+						010-0000-0000</span></i> 
+			</div>
+			<div class="social-links d-none d-md-flex align-items-center" 
+				th:if="${session.user ==null }">
+				<a href="/login/user/login" class="nav-link">로그인</a> 
+				<a href="/login/user/join" class="nav-link">회원가입</a> 
+				<a href="/store/storeChoice" class="nav-link">사업자</a>
+			</div>
+			
+			<div class="social-links d-none d-md-flex align-items-center" 
+				th:if="${session.user}">
+				<a href="/login/user/mypage" class="nav-link">마이페이지</a>
+				<a href="/login/user/logout" class="nav-link">로그아웃</a> 
+			</div>
+		</div>
+	</section>
 	<div th:replace="~{fragments/header::header}"></div>
 	<div class="jumbotron">
 		<div class="container">
@@ -50,8 +73,8 @@
 	</div>
 	<div class="container">
 		<form action="form" class="form-horizontal" method="post">
-			<input type="hidden" name="storeid" th:value="${id}" />
-
+			<!-- <input type="hidden" name="sNum" th:value="${sNum}" />
+				<input type="hidden" id="uNum" th:value="${session.user.getUNum()}" /> -->
 			<div id="menuItems">
 				<div class="form-group row">
 					<label class="col-sm-2">메뉴</label>

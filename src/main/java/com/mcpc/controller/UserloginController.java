@@ -30,26 +30,26 @@ public class UserloginController {
         return "/login/user/login";
     }
     
+    @GetMapping("mypage")
+    public String mypage() {
+    	return "/login/user/mypage";
+    }
+    
     @PostMapping("join")
-	@ResponseBody
-	public String join(@RequestBody UserDTO user) {
-		String cnt = userService.idCheck(user.getUId());
-		if (cnt != null)
-			return "fail"; // 아이디 존재
+	public String join(UserDTO user) {
 		userService.join(user);
-		return "success";
+		return "redirect:/login/user/login";
 	}
     
     @PostMapping("login")
-    @ResponseBody
-    public String login(@RequestBody UserDTO user, HttpSession session) {
+    public String login(UserDTO user, HttpSession session) {
         UserDTO u = userService.loginCheck(user.getUId()); // 변경된 부분
         if(u == null) {  //회원이 아님
-            return "no";
+            return "/login/user/login";
         }
         if (u.getUPw().equals(user.getUPw())) { // 회원(비번 맞음)
             session.setAttribute("user", u);
-            return "success";
+            return "redirect:/home";
         } else { //비밀번호 오류
             return "fail";
         }
@@ -59,6 +59,6 @@ public class UserloginController {
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "/login/user/login";
+        return "redirect:/home";
     }
 }

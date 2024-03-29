@@ -45,7 +45,7 @@ public class UserDTO {
     private String uMobile; // 전화번호
     
     @OneToMany(mappedBy = "userDTO", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReservationDTO> reservation;
+    private List<ReservationDTO> reservationDTO;
     @OneToMany(mappedBy = "userDTO", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReviewDTO> review;
+    private List<ReviewDTO> reviewDTO;
 }
