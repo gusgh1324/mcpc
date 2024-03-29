@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/store/*")
 @RequiredArgsConstructor
 public class StoreController {
-    private final StoreService storeService;
+private final StoreService storeService;
     
 	@GetMapping("storeChoice")
 	public String storeChoice() {
@@ -46,23 +46,28 @@ public class StoreController {
 	}
 
 	@GetMapping("storeLogin")
-    public String loginForm() {
+    public String loginForm(HttpSession session, Model model) {
+        // 세션에서 인증 정보를 가져와서 로그인 여부를 확인
+        Boolean authenticatedStore = (Boolean) session.getAttribute("authenticatedStore");
+        
+        if (authenticatedStore != null && authenticatedStore) {
+            // 이미 로그인된 경우 로그아웃 버튼을 보여줌
+            model.addAttribute("loggedIn", true);
+        }
         return "store/storeLogin";
     }
 
-    @PostMapping("storeLogin")
-    public String login(StoreDTO storeDTO, HttpSession session, RedirectAttributes redirectAttributes) {
-    	if (storeService.authenticate(storeDTO)) {
-    	    // 로그인 성공
-    	    session.setAttribute("authenticatedStore", true);
-    	    session.setAttribute("sId", storeDTO.getSId());
-    	    return "redirect:/store/home";
-    	} else {
-            // 로그인 실패
-            redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
-            return "redirect:/store/storeLogin";
-        }
-    }
+	@PostMapping("storeLogin")
+	public String login(StoreDTO storeDTO, HttpSession session, RedirectAttributes redirectAttributes) {
+	    if (storeService.authenticate(storeDTO, session)) {
+	        // 로그인 성공 시 storeChoice 페이지로 리다이렉트
+	        return "redirect:/store/storeChoice";
+	    } else {
+	        // 로그인 실패 시 로그인 페이지로 리다이렉트하고 에러 메시지 전달
+	        redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+	        return "redirect:/store/storeLogin";
+	    }
+	}
 
     @GetMapping("logout")
     public String logout(HttpSession session) {

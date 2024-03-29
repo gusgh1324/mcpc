@@ -88,14 +88,22 @@
     </div>
   </section><!-- End Top Bar -->
   
-         <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <h2>사업자 로그인</h2>
-                 <div th:if="${error}" class="alert alert-danger">
-	                <p th:text="${error}"></p>
-	            </div>
-                <form action="storeLogin" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>사업자 로그인</h2>
+            <div th:if="${error}" class="alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <!-- 세션에 authenticatedStore 값이 존재하는 경우 -->
+            <div th:if="${session.authenticatedStore}">
+                <p>로그인 중입니다. 로그아웃을 하시겠습니까?</p>
+                <a th:href="@{/store/logout}">로그아웃</a>
+            </div>
+            <!-- 세션에 authenticatedStore 값이 존재하지 않는 경우 -->
+            <div th:unless="${session.authenticatedStore}">
+                <p>로그인이 필요합니다. 로그인해주세요.</p>
+                <form action="/store/storeLogin" method="post">
                     <div>
                         <label for="sId">아이디:</label>
                         <input type="text" id="sId" name="sId">
@@ -109,6 +117,8 @@
             </div>
         </div>
     </div>
+</div>
+
     
     <div th:replace="~{fragments/footer::footer}"></div>
     

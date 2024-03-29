@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Param;
 import com.mcpc.dto.StoreDTO;
+import java.util.List;
 
 
 @Mapper
@@ -14,7 +15,7 @@ public interface StoreMapper {
 	        "VALUES (#{sId}, #{sPw}, #{sName}, #{sMobile}, #{businessNum})")
 	void storeJoin(StoreDTO storeDTO);
 	
-	@Select("SELECT * FROM store WHERE sId = #{sid}")
-	StoreDTO findStoreById(@Param("sid") String sId);
-	
+	 @Select("SELECT * FROM store WHERE sId = #{sid}")
+	 List<StoreDTO> findStoreById(@Param("sid") String sId);
 }
+ 

@@ -25,6 +25,8 @@ public class StoreDetailDTO {
     @Column(name = "dnum")
     private Long dNum; 
     
+    @Column(name = "sid")
+	private String sId;
     
     private String premium; // 광고
     
@@ -34,7 +36,7 @@ public class StoreDetailDTO {
     private String offDay; // 휴무일
     
     @ManyToOne
-    @JoinColumn(name = "snum")
+    @JoinColumn(name = "snum", referencedColumnName = "snum", insertable = false, updatable = false) // 외래 키와 매핑할 필드 지정
     private StoreDTO storeDTO; 
    
     
