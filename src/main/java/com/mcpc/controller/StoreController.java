@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/store/*")
 @RequiredArgsConstructor
 public class StoreController {
-private final StoreService storeService;
+	private final StoreService storeService;
     
 	@GetMapping("storeChoice")
 	public String storeChoice() {
@@ -61,6 +61,8 @@ private final StoreService storeService;
 	public String login(StoreDTO storeDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 	    if (storeService.authenticate(storeDTO, session)) {
 	        // 로그인 성공 시 storeChoice 페이지로 리다이렉트
+	        String sId = storeDTO.getSId(); // 로그인 과정을 통해 얻은 sId
+	        session.setAttribute("sId", sId); // 세션에 sId 저장
 	        return "redirect:/store/storeChoice";
 	    } else {
 	        // 로그인 실패 시 로그인 페이지로 리다이렉트하고 에러 메시지 전달
@@ -91,5 +93,28 @@ private final StoreService storeService;
             return "redirect:/store/storeLogin";
         }
     }
+    
+	// HttpSession 객체를 이용하여 세션 값 확인
+	@GetMapping("/checkSession")
+	public String checkSession(HttpSession session) {
+	    String sId = (String) session.getAttribute("sId");
+	    if (sId != null) {
+	        // 세션에 sId가 존재하는 경우
+	        System.out.println("세션에 sId가 올바르게 설정되었습니다: " + sId);
+	    } else {
+	        // 세션에 sId가 존재하지 않는 경우
+	        System.out.println("세션에 sId가 설정되지 않았거나 null입니다.");
+	    }
+	    return "redirect:/home"; // 확인 후 홈 페이지로 리다이렉트하거나 적절한 경로로 리다이렉트
+	}
+	
+	@PostMapping("login")
+	public String login(HttpSession session, String sId) {
+	    // 로그인 과정을 거쳐서 sId를 얻었다고 가정합니다.
+	    // sId를 세션에 저장합니다.
+	    session.setAttribute("sId", sId);
+	    // 로그인이 성공적으로 처리되었으므로 다른 작업을 수행하거나 페이지를 이동합니다.
+	    return "redirect:/home";
+	}
 
 }

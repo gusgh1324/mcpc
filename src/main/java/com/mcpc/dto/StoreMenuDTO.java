@@ -1,5 +1,7 @@
 package com.mcpc.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,10 +35,12 @@ public class StoreMenuDTO {
     private boolean inventory; // 재고
     
     
-    @Column(name = "filename")
-    private String fileName; 
+    //@Column(name = "imagefile")
+    //private MultipartFile imageFile; 
+    
     @Column(name = "fileurl")
     private String fileUrl; 
+    
     @Column(name = "uuid")
     private String UUID;
    

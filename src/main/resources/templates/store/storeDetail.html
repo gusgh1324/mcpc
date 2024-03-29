@@ -63,41 +63,47 @@ body {
 	</section>
 	<!-- End Top Bar -->
 	<div class="container">
-		<h2>상세 정보</h2>
-		<form action="storeDetail" method="post" id="storeDetailForm" enctype="multipart/form-data">
-		<input type="hidden" id="sId" name="sId" value="${sId}">
-			<div id="storeDetailFields">
-				<div class="store-detail-field">
-					<label>광고:</label> <input type="radio" id="premiumYes"
-						name="premium" value="Yes"> <label for="premiumYes">네</label>
-					<input type="radio" id="premiumNo" name="premium" value="No">
-					<label for="premiumNo">아니요</label>
-				</div>
-				<div class="store-detail-field">
-					<label for="category">카테고리:</label> <input type="text"
-						id="category" name="category">
-				</div>
-				<div>
-					<label for="offDay">휴무일:</label><br> <input type="checkbox"
-						id="monday" name="offDay" value="월"> <label for="monday">월</label>
-					<input type="checkbox" id="tuesday" name="offDay" value="화">
-					<label for="tuesday">화</label> <input type="checkbox"
-						id="wednesday" name="offDay" value="수"> <label
-						for="wednesday">수</label> <input type="checkbox" id="thursday"
-						name="offDay" value="목"> <label for="thursday">목</label> <input
-						type="checkbox" id="friday" name="offDay" value="금"> <label
-						for="friday">금</label> <input type="checkbox" id="saturday"
-						name="offDay" value="토"> <label for="saturday">토</label> <input
-						type="checkbox" id="sunday" name="offDay" value="일"> <label
-						for="sunday">일</label>
-				</div>
-				<br />
+    <h2>상세 정보</h2>
+    <form action="storeDetail" method="post" id="storeDetailForm" enctype="multipart/form-data">
+        <label for="sId">아이디:</label> <span id="sIdPlaceholder"></span>
+        <div id="storeDetailFields">
+            <div class="store-detail-field">
+                <label>광고:</label> <input type="radio" id="premiumYes"
+                    name="premium" value="Yes"> <label for="premiumYes">네</label>
+                <input type="radio" id="premiumNo" name="premium" value="No">
+                <label for="premiumNo">아니요</label>
+            </div>
+            <div class="store-detail-field">
+                <label for="category">카테고리:</label> <input type="text"
+                    id="category" name="category">
+            </div>
+            <div>
+                <label for="offDay">휴무일:</label><br> <input type="checkbox"
+                    id="monday" name="offDay" value="월"> <label for="monday">월</label>
+                <input type="checkbox" id="tuesday" name="offDay" value="화">
+                <label for="tuesday">화</label> <input type="checkbox"
+                    id="wednesday" name="offDay" value="수"> <label
+                    for="wednesday">수</label> <input type="checkbox" id="thursday"
+                    name="offDay" value="목"> <label for="thursday">목</label> <input
+                    type="checkbox" id="friday" name="offDay" value="금"> <label
+                    for="friday">금</label> <input type="checkbox" id="saturday"
+                    name="offDay" value="토"> <label for="saturday">토</label> <input
+                    type="checkbox" id="sunday" name="offDay" value="일"> <label
+                    for="sunday">일</label>
+            </div>
+            <br />
+            <button type="submit">저장</button>
+            <button type="button" onclick="window.location.href='/'">취소</button>
+        </div>
+    </form>
+</div>
 
-			<button type="submit">저장</button>
-			<button type="button" onclick="window.location.href='/'">취소</button>
-			
-		</form>
-	</div>
+
+<script>
+    // 세션에서 sId 값을 가져와서 HTML에 삽입
+    var sId = sessionStorage.getItem("sId");
+    document.getElementById("sIdPlaceholder").textContent = sId;
+</script>
 
 	<div th:replace="~{fragments/footer::footer}"></div>
 
