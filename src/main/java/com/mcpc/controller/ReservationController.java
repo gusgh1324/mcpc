@@ -1,6 +1,7 @@
 package com.mcpc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,12 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping("form")
-	public String form() {
-		return "/reservation/form";
-	}
+	 @GetMapping("/form")
+	    public String form(Model model) {
+	        model.addAttribute("reservation", new ReservationDTO());
+	        return "reservation/form";
+	    }
+	 
 	@PostMapping("form")
 	public String formInsert(ReservationDTO reservation, ReMenuOrderDTO reMenuOrder) {
 		reservationService.insert(reservation, reMenuOrder);
@@ -47,6 +50,8 @@ public class ReservationController {
 	}
 	@GetMapping("order")
 	public String order() {
+//		 if (reservations.isEmpty()) {
+//	            return "reservation/reorder"; 
 		return "/reservation/order";
 	}
 	@GetMapping("reorder")

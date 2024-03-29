@@ -1,11 +1,10 @@
 package com.mcpc.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mcpc.dto.UserDTO;
 import com.mcpc.service.UserService;
@@ -42,9 +41,10 @@ public class UserloginController {
 	}
     
     @PostMapping("login")
-    public String login(UserDTO user, HttpSession session) {
+    public String login(Model model ,UserDTO user, HttpSession session) {
         UserDTO u = userService.loginCheck(user.getUId()); // 변경된 부분
-        if(u == null) {  //회원이 아님
+        if (u == null) {  // 회원이 아님
+            model.addAttribute("errorMessage", "아이디 또는 비밀번호를 확인해주세요.");
             return "/login/user/login";
         }
         if (u.getUPw().equals(user.getUPw())) { // 회원(비번 맞음)
