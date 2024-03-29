@@ -34,7 +34,7 @@ public class StoreDTO {
 	@Column(name = "smobile")
 	private String sMobile; // 전화번호
 	
-	@Column(name = "businessnumr")
+	@Column(name = "businessnum")
 	private String businessNum; // 사업자번호
 	
 	@OneToMany(mappedBy = "storeDTO", cascade = CascadeType.ALL, orphanRemoval = true)
