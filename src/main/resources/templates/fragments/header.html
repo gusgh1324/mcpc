@@ -54,10 +54,17 @@
 					class="bi bi-phone d-flex align-items-center ms-4"><span>+82
 						010-0000-0000</span></i> 
 			</div>
-			<div class="social-links d-none d-md-flex align-items-center">
-				<a href="/login/user/login" class="login">로그인</a> 
-				<a href="/login/user/join" class="joing">회원가입</a> 
+			<div class="social-links d-none d-md-flex align-items-center" 
+				th:if="${session.user ==null }">
+				<a href="/login/user/login" class="nav-link">로그인</a> 
+				<a href="/login/user/join" class="nav-link">회원가입</a> 
 				<a href="/store/storeChoice" class="nav-link">사업자</a>
+			</div>
+			
+			<div class="social-links d-none d-md-flex align-items-center" 
+				th:if="${session.user}">
+				<a href="/login/user/mypage" class="nav-link">마이페이지 ([[${session.user.getUId()}]]회원님)</a>
+				<a href="/login/user/logout" class="nav-link">로그아웃</a> 
 			</div>
 		</div>
 	</section>
