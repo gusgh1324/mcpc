@@ -64,6 +64,9 @@ body {
 	<!-- End Top Bar -->
 	<div class="container">
 		<h2>상세 정보</h2>
+		<p th:if="${session.sId != null}" th:text="'아이디 : ' + ${session.sId.sName}">인증된 가게: </p>
+
+		
 		<form action="storeDetail" method="post" id="storeDetailForm"
 			enctype="multipart/form-data">
 			

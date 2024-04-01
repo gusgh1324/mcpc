@@ -111,7 +111,8 @@ button[type="submit"]:hover {
 					<p>로그인 중입니다. 로그아웃을 하시겠습니까?</p>
 					<a th:href="@{/store/logout}">로그아웃</a>
 					
-					<p th:text="${session.sId.sName}">인증된 가게: </p>
+					<p th:if="${session.sId != null}" th:text="${session.sId.sName}">인증된 가게: </p>
+
 					
 				</div>
 				<!-- 세션에 authenticatedStore 값이 존재하지 않는 경우 -->
