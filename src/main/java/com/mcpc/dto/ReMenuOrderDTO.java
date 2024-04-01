@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,5 +33,15 @@ public class ReMenuOrderDTO {
 	 @ManyToOne
 	 @JoinColumn(name = "rnum")
 	 private ReservationDTO reservationDTO;
+	 @Transient
+	 private Long rNum;
+	 
+	 @ManyToOne
+	 @JoinColumn(name = "unum")
+	 private UserDTO userDTO;
+	 @Transient
+	 private Long uNum;
+	 
+	 
 
 }

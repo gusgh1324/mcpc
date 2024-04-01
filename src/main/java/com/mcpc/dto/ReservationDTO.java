@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,21 +42,10 @@ public class ReservationDTO {
     @ManyToOne
     @JoinColumn(name = "unum")
     private UserDTO userDTO;
-    
-    public Long getSnum() {
-        if (this.storeDTO != null) {
-            return this.storeDTO.getSNum();
-        }
-        return null;
-    }
-
-    public Long getUnum() {
-        if (this.userDTO != null) {
-            return this.userDTO.getUNum();
-        }
-        return null;
-    }
-    
+    @Transient
+    private Long uNum;
+  
+  
 
     @OneToMany(mappedBy = "reservationDTO", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReMenuOrderDTO> reMenuOrderDTO;

@@ -57,17 +57,7 @@
 			<h1>영수증</h1>
 		</div>
 		<div class="container">
-			<div class="row justify-content-between">
-				<tr th:each="reservation : ${reservations}">
-					<th:block th:if=" ${reservation.id == lastOrderId}">
-						<td
-							th:text="${'주문시간 : ' + #dates.format(reservation.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
-					</th:block>
-				</tr>
-			</div>
-
-
-
+		
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -80,13 +70,13 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="menuOrder : ${menuOrders}">
-						<th:block th:if="${menuOrder.id == lastOrderId}">
-							<td class="text-center" th:text="${menuOrder.id}">주문번호</td>
-							<td class="text-center" th:text="${menuOrder.menuName}">메뉴명</td>
-							<td class="text-center" th:text="${menuOrder.menuCount}">수량</td>
+					<tr th:each="reme : ${reme}">
+						<th:block th:if="${reme.rNum == remax and reme.uNum == session.user.uNum}">
+							<td class="text-center" th:text="${reme.rNum}">주문번호</td>
+							<td class="text-center" th:text="${reme.orderMenu}">메뉴명</td>
+							<td class="text-center" th:text="${reme.menuCount}">수량</td>
 							<td class="text-center">6000</td>
-							<td class="text-center" th:text="${menuOrder.menuCount * 6000}">소계</td>
+							<td class="text-center" th:text="${reme.menuCount * 6000}">소계</td>
 						</th:block>
 					</tr>
 				</tbody>

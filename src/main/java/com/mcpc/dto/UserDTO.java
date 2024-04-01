@@ -48,4 +48,6 @@ public class UserDTO {
     private List<ReservationDTO> reservationDTO;
     @OneToMany(mappedBy = "userDTO", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReviewDTO> reviewDTO;
+    @OneToMany(mappedBy = "userDTO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReMenuOrderDTO> reMenuOrderDTO;
 }
