@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import com.mcpc.dto.StoreDTO;
 import com.mcpc.dto.StoreMenuDTO;
 
@@ -27,4 +27,5 @@ public interface StoreMenuMapper {
 	public List<StoreMenuDTO> menuList();
 	
 	StoreDTO getStoreBysNum(@Param("sNum") Long sNum);
+	
 }

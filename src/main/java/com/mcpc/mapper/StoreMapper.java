@@ -17,5 +17,7 @@ public interface StoreMapper {
 	
 	 @Select("SELECT * FROM store WHERE sId = #{sid}")
 	 List<StoreDTO> findStoreById(@Param("sid") String sId);
+	 
+	
 }
  

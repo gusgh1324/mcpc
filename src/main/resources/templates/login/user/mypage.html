@@ -17,7 +17,8 @@
 
 <!-- Favicons -->
 <link href="../../assets/img/favicon.png" rel="icon">
-<link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="../../assets/img/apple-touch-icon.png"
+	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,37 +43,42 @@
 
 <style>
 body {
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa; /* 배경색 지정 */
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f9fa; /* 배경색 지정 */
 }
+
 .container {
-    margin-top: 50px;
-    margin-bottom: 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
+
 .login-form {
-    max-width: 400px;
-    margin: 0 auto;
+	max-width: 400px;
+	margin: 0 auto;
 }
+
 h2 {
-    text-align: center; /* 헤더 제목 가운데 정렬 */
-    margin-bottom: 20px; /* 아래 여백 조정 */
+	text-align: center; /* 헤더 제목 가운데 정렬 */
+	margin-bottom: 20px; /* 아래 여백 조정 */
 }
+
 form {
-    margin-top: 20px; /* 폼 위 여백 추가 */
+	margin-top: 20px; /* 폼 위 여백 추가 */
 }
+
 button[type="submit"] {
-    background-color: #007bff; /* 버튼 배경색 지정 */
-    color: #fff; /* 버튼 글자색 지정 */
-    border: none; /* 버튼 테두리 없앰 */
-    border-radius: 4px; /* 버튼 테두리 둥글게 만듦 */
-    padding: 10px 20px; /* 버튼 내부 여백 지정 */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 마우스 호버 시 배경색 변화를 부드럽게 만듦 */
+	background-color: #007bff; /* 버튼 배경색 지정 */
+	color: #fff; /* 버튼 글자색 지정 */
+	border: none; /* 버튼 테두리 없앰 */
+	border-radius: 4px; /* 버튼 테두리 둥글게 만듦 */
+	padding: 10px 20px; /* 버튼 내부 여백 지정 */
+	cursor: pointer;
+	transition: background-color 0.3s ease; /* 마우스 호버 시 배경색 변화를 부드럽게 만듦 */
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
+	background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 </style>
 
@@ -83,33 +89,33 @@ button[type="submit"]:hover {
 
 </head>
 <body>
-<th:block th:include="~{/fragments/header}"></th:block>
-  
+	<th:block th:include="~{/fragments/header}"></th:block>
+
 	<th:block th:with="user=${session.user}">
-    <div class="container">
-        <h2 th:text="'(' + ${user.uName} + '님의 정보)'"></h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th>생일</th>
-                    <th>전화번호</th>
-                    <th>성별</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td th:text="${user.uId}"></td>
-                    <td th:text="${user.uName}"></td>
-                    <td th:text="${user.uBirth}"></td>
-                    <td th:text="${user.uMobile}"></td>
-                    <td th:text="${user.uGender}"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</th:block>
-<div th:replace="~{fragments/footer::footer}"></div>
+		<div class="container">
+			<h2 th:text="'(' + ${user.uName} + '님의 정보)'"></h2>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>생일</th>
+						<th>전화번호</th>
+						<th>성별</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${user.uId}"></td>
+						<td th:text="${user.uName}"></td>
+						<td th:text="${user.uBirth}"></td>
+						<td th:text="${user.uMobile}"></td>
+						<td th:text="${user.uGender}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</th:block>
+	<div th:replace="~{fragments/footer::footer}"></div>
 </body>
 </html>
