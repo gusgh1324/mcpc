@@ -30,18 +30,19 @@ public class ReservationController {
 	}
 
 	@PostMapping("form")
-	public String formInsert(ReservationDTO reservation, @RequestParam List<String> orderMenu, @RequestParam List<Integer> menuCount) {
-	    List<ReMenuOrderDTO> menuOrders = new ArrayList<>();
-	    for (int i = 0; i < orderMenu.size(); i++) {
-	        ReMenuOrderDTO reMenuOrder = new ReMenuOrderDTO();
-	        reMenuOrder.setOrderMenu(orderMenu.get(i));
-	        reMenuOrder.setMenuCount(menuCount.get(i));
-	        menuOrders.add(reMenuOrder);
-	    }
+	public String formInsert(ReservationDTO reservation, @RequestParam List<String> orderMenu,
+			@RequestParam List<Integer> menuCount) {
+		List<ReMenuOrderDTO> menuOrders = new ArrayList<>();
+		for (int i = 0; i < orderMenu.size(); i++) {
+			ReMenuOrderDTO reMenuOrder = new ReMenuOrderDTO();
+			reMenuOrder.setOrderMenu(orderMenu.get(i));
+			reMenuOrder.setMenuCount(menuCount.get(i));
+			menuOrders.add(reMenuOrder);
+		}
 
-	    reservationService.insert(reservation, menuOrders);
-	    
-	    return "/reservation/thankCustomer";
+		reservationService.insert(reservation, menuOrders);
+
+		return "/reservation/thankCustomer";
 	}
 
 	@GetMapping("/form")
@@ -61,6 +62,13 @@ public class ReservationController {
 		if (user == null) {
 			return "redirect:/login/user/login";
 		}
+		Long uNum = user.getUNum();
+
+		List<ReservationDTO> reservations = reservationService.getReservationsByUNum(uNum);
+
+		if (reservations.isEmpty()) {
+			return "/reservation/reorder";
+		}
 
 		model.addAttribute("reser", reservationService.list());
 		model.addAttribute("reme", reservationService.listmenu());
@@ -72,6 +80,14 @@ public class ReservationController {
 		UserDTO user = (UserDTO) session.getAttribute("user");
 		if (user == null) {
 			return "redirect:/login/user/login";
+		}
+
+		Long uNum = user.getUNum();
+
+		List<ReservationDTO> reservations = reservationService.getReservationsByUNum(uNum);
+
+		if (reservations.isEmpty()) {
+			return "/reservation/reorder";
 		}
 
 		model.addAttribute("reser", reservationService.list());

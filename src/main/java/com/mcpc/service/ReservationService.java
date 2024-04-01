@@ -11,5 +11,7 @@ public interface ReservationService {
 	public List<ReservationDTO> list();
 	public List<ReMenuOrderDTO> listmenu();
 	public Long max();
+	
+	List<ReservationDTO> getReservationsByUNum(Long uNum);
 
 }

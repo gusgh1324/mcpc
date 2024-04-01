@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.data.repository.query.Param;
 
 import com.mcpc.dto.ReMenuOrderDTO;
 import com.mcpc.dto.ReservationDTO;
@@ -29,4 +30,8 @@ public interface ReservationMapper {
     
     @Select("SELECT MAX(rnum) FROM remenuorder;")
     public Long max();
+    
+
+    @Select("SELECT * FROM reservation WHERE unum = #{uNum}")
+    List<ReservationDTO> getReservationsByUNum(@Param("uNum") Long uNum);
 }

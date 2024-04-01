@@ -42,5 +42,10 @@ public class ReservationServiceImpl implements ReservationService{
 		return reservationMapper.max();
 	}
 	
+	 @Override
+	    public List<ReservationDTO> getReservationsByUNum(Long uNum) {
+	        return reservationMapper.getReservationsByUNum(uNum);
+	    }
+	
 	
 }
