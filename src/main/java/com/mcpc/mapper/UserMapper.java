@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import com.mcpc.dto.UserDTO;
 
 @Mapper
-public interface UserServiceMapper {
+public interface UserMapper {
 	@Insert("insert into user values(#{uNum},#{uBirth}, #{uEmail}, #{uGender}, #{uId}, "
 			+ "#{uMobile}, #{uName}, #{uPw})")
 	public void join(UserDTO user);

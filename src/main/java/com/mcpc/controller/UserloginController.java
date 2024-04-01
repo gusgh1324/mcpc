@@ -42,7 +42,7 @@ public class UserloginController {
     
     @PostMapping("login")
     public String login(Model model ,UserDTO user, HttpSession session) {
-        UserDTO u = userService.loginCheck(user.getUId()); // 변경된 부분
+        UserDTO u = userService.loginCheck(user.getUId()); 
         if (u == null) {  // 회원이 아님
             model.addAttribute("errorMessage", "아이디 또는 비밀번호를 확인해주세요.");
             return "/login/user/login";

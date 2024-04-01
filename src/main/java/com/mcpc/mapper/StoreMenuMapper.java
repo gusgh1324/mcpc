@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.mcpc.dto.StoreDTO;
 import com.mcpc.dto.StoreMenuDTO;
 
 @Mapper
@@ -16,4 +17,7 @@ public interface StoreMenuMapper {
 	
 	@Select("select*from store_menu")
 	public List<StoreMenuDTO> menuList();
+	
+	
+
 }

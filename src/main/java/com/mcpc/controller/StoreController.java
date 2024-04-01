@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mcpc.dto.StoreDTO;
+import com.mcpc.dto.UserDTO;
 import com.mcpc.service.StoreService;
 
 import jakarta.servlet.http.HttpSession;
@@ -109,10 +110,8 @@ public class StoreController {
 	}
 	
 	@PostMapping("login")
-	public String login(HttpSession session, String sId) {
-	    // 로그인 과정을 거쳐서 sId를 얻었다고 가정합니다.
-	    // sId를 세션에 저장합니다.
-	    session.setAttribute("sId", sId);
+	public String login(HttpSession session, StoreDTO store) {
+	    session.setAttribute("sId", store);
 	    // 로그인이 성공적으로 처리되었으므로 다른 작업을 수행하거나 페이지를 이동합니다.
 	    return "redirect:/home";
 	}

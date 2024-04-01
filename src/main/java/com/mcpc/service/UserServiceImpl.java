@@ -3,13 +3,13 @@ package com.mcpc.service;
 import org.springframework.stereotype.Service;
 
 import com.mcpc.dto.UserDTO;
-import com.mcpc.mapper.UserServiceMapper;
+import com.mcpc.mapper.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
-	private final UserServiceMapper userServiceMapper;
+	private final UserMapper userServiceMapper;
 
 	@Override
 	public void join(UserDTO user) {
