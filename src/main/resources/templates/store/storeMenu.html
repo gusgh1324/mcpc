@@ -64,7 +64,7 @@ body {
 	</section>
 	<!-- End Top Bar -->
 <h2>메뉴 추가</h2>
-<form action="storeMenu" method="post" id="menuForm">
+<form method="post" action="/storeMenu" enctype="multipart/form-data">
     <div class="menu-entry">
         <div>
             <label for="mName">메뉴 이름:</label>
@@ -82,14 +82,17 @@ body {
         </div>
         
         <div>
-            <label for="inventory">재고:</label>
-            <input type="checkbox" id="inventory" name="inventory">
-        </div>
+		    <label for="inventory">재고:</label>
+		    <select id="inventory" name="inventory">
+		        <option value="true">있음</option>
+		        <option value="false">품절</option>
+		    </select>
+		</div>
         
-        <div>
+        <!-- <div>
             <label for="imageFile">이미지:</label>
             <input type="file" id="imageFile" name="imageFile">
-        </div>
+        </div> -->
     </div>
     
     <button type="button" id="addMenuBtn" class="btn btn-success">추가</button>
@@ -116,12 +119,12 @@ body {
             </div>
             <div>
                 <label for="inventory">재고:</label>
-                <input type="checkbox" name="inventory">
+                <input type="text" name="inventory">
             </div>
-            <div>
-                <label for="fileName">이미지:</label>
-                <input type="file" name="fileName">
-            </div>
+            /* <div>
+                <label for="imageFile">이미지:</label>
+                <input type="file" name="imageFile">
+            </div> */
         `;
         document.getElementById("menuForm").insertBefore(menuEntry, document.getElementById("addMenuBtn"));
     });

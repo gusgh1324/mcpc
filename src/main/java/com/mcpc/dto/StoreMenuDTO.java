@@ -27,6 +27,7 @@ public class StoreMenuDTO {
     
     @Column(name = "mname")
     private String mName; 
+    
     @Column(name = "mprice")
     private String mPrice; 
     
@@ -34,16 +35,15 @@ public class StoreMenuDTO {
     
     private boolean inventory; // 재고
     
-    
     //@Column(name = "imagefile")
-    //private MultipartFile imageFile; 
+    //private String imageFile; 
+
+    // 이미지 파일의 경로를 저장
+    //@Column(name = "fileurl")
+    //private String fileUrl; 
     
-    @Column(name = "fileurl")
-    private String fileUrl; 
-    
-    @Column(name = "uuid")
-    private String UUID;
-   
+    //@Column(name = "uuid")
+    //private String UUID;
    
     @ManyToOne
     @JoinColumn(name = "snum")

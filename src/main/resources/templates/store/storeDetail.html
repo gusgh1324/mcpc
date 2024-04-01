@@ -65,7 +65,8 @@ body {
 	<div class="container">
     <h2>상세 정보</h2>
     <form action="storeDetail" method="post" id="storeDetailForm" enctype="multipart/form-data">
-        <label for="sId">아이디:</label> <span id="sIdPlaceholder"></span>
+        <p th:text="${sId.sNum}"></p>
+
         <div id="storeDetailFields">
             <div class="store-detail-field">
                 <label>광고:</label> <input type="radio" id="premiumYes"

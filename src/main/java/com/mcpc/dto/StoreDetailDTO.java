@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,6 +39,8 @@ public class StoreDetailDTO {
     @ManyToOne
     @JoinColumn(name = "snum", referencedColumnName = "snum", insertable = false, updatable = false) // 외래 키와 매핑할 필드 지정
     private StoreDTO storeDTO; 
+    @Transient
+	private Long sNum;
    
     
 }
