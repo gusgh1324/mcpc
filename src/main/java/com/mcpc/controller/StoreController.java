@@ -62,7 +62,7 @@ public class StoreController {
 	public String login(StoreDTO storeDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 	    if (storeService.authenticate(storeDTO, session)) {
 	        // 로그인 성공 시 storeChoice 페이지로 리다이렉트
-	        String sId = storeDTO.getSId(); // 로그인 과정을 통해 얻은 sId
+	        StoreDTO sId = storeService.findStoreById(storeDTO.getSId()); // 로그인 과정을 통해 얻은 sId
 	        session.setAttribute("sId", sId); // 세션에 sId 저장
 	        return "redirect:/store/storeChoice";
 	    } else {

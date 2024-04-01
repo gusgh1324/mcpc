@@ -40,14 +40,14 @@ public class StoreService {
         if (store != null && store.getSPw().equals(storeDTO.getSPw())) {
             // 로그인 성공 시 세션에 인증 정보 설정합니다.
             session.setAttribute("authenticatedStore", true);
-            session.setAttribute("sId", store.getSId());
+            session.setAttribute("sId", store);
             return true; // 인증 성공
         } else {
             return false; // 인증 실패
         }
     }
 
-    // 로그아웃 시 세션 초기화
+	// 로그아웃 시 세션 초기화
     public void logout(HttpSession session) {
         session.removeAttribute("authenticatedStore");
         session.removeAttribute("sId");
