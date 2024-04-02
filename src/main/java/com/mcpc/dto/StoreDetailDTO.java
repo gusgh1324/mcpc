@@ -25,10 +25,7 @@ public class StoreDetailDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dnum")
     private Long dNum; 
-    
-    @Column(name = "sid")
-	private String sId;
-    
+ 
     private String premium; // 광고
     
     private String category; // 카테고리
@@ -37,10 +34,10 @@ public class StoreDetailDTO {
     private String offDay; // 휴무일
     
     @ManyToOne
-    @JoinColumn(name = "snum", referencedColumnName = "snum", insertable = false, updatable = false) // 외래 키와 매핑할 필드 지정
-    private StoreDTO storeDTO; 
+    @JoinColumn(name = "snum")
+    private StoreDTO storeDTO;
     @Transient
-	private Long sNum;
+    private Long sNum;
    
     
 }

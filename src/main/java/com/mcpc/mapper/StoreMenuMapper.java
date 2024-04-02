@@ -18,14 +18,17 @@ public interface StoreMenuMapper {
 	 * ) public void menuInsert(StoreMenuDTO storeMenuDTO);
 	 */
 	
-	@Insert("insert into store_menu(mname, mprice, description, inventory, snum, dnum) \r\n"
-			+ "values (#{mName}, #{mPrice}, #{description}, #{inventory}, #{storeDTO.sNum}, #{storeDetailDTO.dNum})")
-	public void menuInsert(StoreMenuDTO storeMenuDTO);
+	@Insert("insert into store_menu(mNum ,mName, mPrice, description, sNum, dNum)"
+			+ "values (#{mNum}, #{mName}, #{mPrice}, #{description}, #{sNum}, #{dNum})")
+	public void menuInsert();
 
 	
 	@Select("select*from store_menu")
 	public List<StoreMenuDTO> menuList();
 	
 	StoreDTO getStoreBysNum(@Param("sNum") Long sNum);
+
+
+	
 	
 }

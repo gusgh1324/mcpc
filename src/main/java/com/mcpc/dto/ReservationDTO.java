@@ -38,6 +38,8 @@ public class ReservationDTO {
     @ManyToOne
     @JoinColumn(name = "snum")
     private StoreDTO storeDTO;
+    @Transient
+    private Long sNum;
     
     @ManyToOne
     @JoinColumn(name = "unum")

@@ -9,6 +9,6 @@ import com.mcpc.dto.StoreDetailDTO;
 public interface StoreDetailMapper {
     
     @Insert("INSERT INTO store_detail (premium, category, offday, snum) " +
-            "VALUES (#{premium}, #{category}, #{offDay}, #{storeDTO.sNum})")
+            "VALUES (#{premium}, #{category}, #{offDay}, #{sNum})")
     void saveStoreDetail(StoreDetailDTO storeDetailDTO);
 }

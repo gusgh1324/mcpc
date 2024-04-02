@@ -22,8 +22,8 @@ public class StoreMenuService {
     private final StoreMenuMapper storeMenuMapper;
 
     // 메뉴 추가
-    public void menuInsert(StoreMenuDTO storeMenuDTO) {
-        storeMenuMapper.menuInsert(storeMenuDTO);
+    public void menuInsert() {
+        storeMenuMapper.menuInsert();
     }
 
     // 메뉴 목록 조회
