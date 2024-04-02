@@ -1,5 +1,7 @@
 package com.mcpc.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mcpc.dto.ReservationDTO;
 import com.mcpc.dto.StoreDTO;
 import com.mcpc.dto.StoreDetailDTO;
+import com.mcpc.dto.UserDTO;
 import com.mcpc.service.StoreDetailService;
 import com.mcpc.service.StoreService;
 
@@ -33,5 +37,4 @@ public class StoreDetailController {
 	    return "redirect:/home";
 	}
 
-	
 }
