@@ -7,11 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 	
-	//////test
-	@GetMapping("home2")
-	public String home2() {
-		return "home2";
-	}
+
 	@GetMapping("review")
 	public String review() {
 		return "review";
@@ -28,8 +24,9 @@ public class HomeController {
 		return "home";
 	}
 	@GetMapping("home")
-	public String home1() {
+	public String home2() {
 		return "home";
 	}
+	
 	
 }

@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +34,6 @@ public class StoreMenuDTO {
     
     private String description; 
     
-    private boolean inventory; // 재고
     
     //@Column(name = "imagefile")
     //private String imageFile; 
@@ -48,9 +48,7 @@ public class StoreMenuDTO {
     @ManyToOne
     @JoinColumn(name = "snum")
     private StoreDTO storeDTO;
-    
-    @ManyToOne
-    @JoinColumn(name = "dnum")
-    private StoreDetailDTO storeDetailDTO; 
+    @Transient
+    private Long sNum;
     
 }

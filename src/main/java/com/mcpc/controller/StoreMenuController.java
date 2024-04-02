@@ -36,8 +36,8 @@ public class StoreMenuController {
 	}
     // 메뉴 추가
 	@PostMapping("storeMenu")
-	public String menuInsert() {
-	    storeMenuService.menuInsert();
+	public String menuInsert(StoreMenuDTO storeMenu) {
+	    storeMenuService.menuInsert(storeMenu);
 		return "store/storeMenu";
 	}
 }

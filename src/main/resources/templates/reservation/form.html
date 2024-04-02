@@ -68,19 +68,24 @@
 	<div th:replace="~{fragments/header::header}"></div>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">(ㅇㅇ가게) 예약</h1>
+			<h1 class="display-3"
+			 th:each="store : ${store}" 
+			 th:if="${store.sNum == sNum}" 
+			 th:text="${store.sName}"> 예약</h1>
 		</div>
 	</div>
 	<div class="container">
 		<form action="form" class="form-horizontal" method="post">
-			<!-- <input type="hidden" name="sNum" th:value="${sNum}" />-->
+			<input type="hidden" name="sNum" id="sNum" th:value="${sNum}" />
 			<input type="hidden" name="uNum" id="uNum" th:value="${session.user.getUNum()}" />
 			<div id="menuItems">
 				<div class="form-group row">
 					<label class="col-sm-2">메뉴</label>
 					<div class="col-sm-4">
-						<input name="orderMenu" id="orderMenu" type="text"
-							class="form-control" placeholder="메뉴 입력" />
+							
+							<select name="orderMenu" id="orderMenu" class="form-control">
+							<option th:each="menu : ${menu}" th:text="${menu.mName}">1</option>
+						</select> 
 					</div>
 					<div class="col-sm-2 text-right">
 						<select name="menuCount" id="menuCount" class="form-control">
@@ -139,55 +144,58 @@
 
 	<div th:replace="~{fragments/footer::footer}"></div>
 	<script>
-        var menuItems = [];
+	
+    var menuItems = [];
 
-        document.getElementById('addMenuItemBtn').addEventListener('click', function () {
-            var menu = document.getElementsByName("orderMenu")[0].value; 
-            var menuCount = document.getElementsByName("menuCount")[0].value;
+    document.getElementById('addMenuItemBtn').addEventListener('click', function () {
+        var menu = document.getElementById('orderMenu').value; 
+        var menuCount = document.getElementsByName("menuCount")[0].value;
 
-            menuItems.push({
-                menu: menu,
-                menuCount: menuCount
-            });
+        menuItems.push({
+            menu: menu,
+            menuCount: menuCount
+        });
 
-            var menuItemsDiv = document.getElementById('menuItems');
+        var menuItemsDiv = document.getElementById('menuItems');
 
-            var newItem = document.createElement('div');
-            newItem.className = 'form-group row';
-            newItem.innerHTML = `
-            <label class="col-sm-2"></label>
-            <div class="col-sm-4">
-                <input name="orderMenu" id="orderMenu" type="text" class="form-control" placeholder="메뉴 입력" />
-            </div>
-            <div class="col-sm-2">
-                <select name="menuCount" id="menuCount" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <br>
-                <button type="button" class="btn btn-danger removeMenuItemBtn">삭제</button>
-            </div>
+        var newItem = document.createElement('div');
+        newItem.className = 'form-group row';
+        newItem.innerHTML = `
+        <label class="col-sm-2"></label>
+        <div class="col-sm-4">
+            <select name="orderMenu" id="orderMenu" class="form-control" disabled>
+                <option value="${menu}" selected>${menu}</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <select name="menuCount" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <button type="button" class="btn btn-danger removeMenuItemBtn">삭제</button>
+        </div>
         `;
-            menuItemsDiv.appendChild(newItem);
-        });
+        menuItemsDiv.appendChild(newItem);
+    });
 
-        document.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('removeMenuItemBtn')) {
-                var menuItemsDiv = document.getElementById('menuItems');
-                var itemIndex = Array.from(menuItemsDiv.children).indexOf(e.target.closest('.form-group.row'));
-                menuItems.splice(itemIndex, 1);
-                e.target.closest('.form-group.row').remove();
-            }
-        });
-    </script>
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('removeMenuItemBtn')) {
+            var menuItemsDiv = document.getElementById('menuItems');
+            var itemIndex = Array.from(menuItemsDiv.children).indexOf(e.target.closest('.form-group.row'));
+            menuItems.splice(itemIndex, 1);
+            e.target.closest('.form-group.row').remove();
+        }
+    });
+</script>
 
 </body>
 

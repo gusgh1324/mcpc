@@ -64,7 +64,7 @@ body {
 	</section>
 	<!-- End Top Bar -->
 <h2>메뉴 추가</h2>
-<form method="post" action="storeMenu" enctype="multipart/form-data">
+<form method="post" action="storeMenu">
     <div class="menu-entry">
     <input type="hidden" name="sNum" id="sNum" th:value="${session.sId.getSNum()}" />
    <!--  <input type="hidden" name="dNum" id="dNum" th:value="${session.sId.getDNum()}" /> -->
@@ -83,54 +83,13 @@ body {
             <textarea id="description" name="description"></textarea>
         </div>
         
-   <!--      <div>
-		    <label for="inventory">재고:</label>
-		    <select id="inventory" name="inventory">
-		        <option value="true">있음</option>
-		        <option value="false">품절</option>
-		    </select>
-		</div> -->
-        
-        <!-- <div>
-            <label for="imageFile">이미지:</label>
-            <input type="file" id="imageFile" name="imageFile">
-        </div> -->
+ 
     </div>
     
     <button type="button" id="addMenuBtn" class="btn btn-success">추가</button>
     <button type="submit" class="btn btn-primary">저장</button>
     <button type="button" onclick="window.location.href='/'" class="btn btn-secondary">취소</button>
 </form>
-
-<script>
-    document.getElementById("addMenuBtn").addEventListener("click", function() {
-        var menuEntry = document.createElement("div");
-        menuEntry.classList.add("menu-entry");
-        menuEntry.innerHTML = `
-            <div>
-                <label for="mName">메뉴 이름:</label>
-                <input type="text" name="mName">
-            </div>
-            <div>
-                <label for="mPrice">메뉴 가격:</label>
-                <input type="text" name="mPrice">
-            </div>
-            <div>
-                <label for="description">설명:</label>
-                <textarea name="description"></textarea>
-            </div>
-            <div>
-                <label for="inventory">재고:</label>
-                <input type="text" name="inventory">
-            </div>
-            /* <div>
-                <label for="imageFile">이미지:</label>
-                <input type="file" name="imageFile">
-            </div> */
-        `;
-        document.getElementById("menuForm").insertBefore(menuEntry, document.getElementById("addMenuBtn"));
-    });
-</script>
 
 
 	<div th:replace="~{fragments/footer::footer}"></div>

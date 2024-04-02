@@ -17,10 +17,10 @@ public interface StoreMenuMapper {
 	 * "values (#{mName}, #{mPrice}, #{description}, #{inventory}, #{fileUrl}, #{UUID}, #{storeDTO.sNum}, #{storeDetailDTO.dNum})"
 	 * ) public void menuInsert(StoreMenuDTO storeMenuDTO);
 	 */
-	
-	@Insert("insert into store_menu(mNum ,mName, mPrice, description, sNum, dNum)"
-			+ "values (#{mNum}, #{mName}, #{mPrice}, #{description}, #{sNum}, #{dNum})")
-	public void menuInsert();
+	@Insert("insert into store_menu(mNum ,mName, mPrice, description, snum) "
+	        + "values (#{mNum}, #{mName}, #{mPrice}, #{description}, #{sNum})")
+	public void menuInsert(StoreMenuDTO storeMenu);
+
 
 	
 	@Select("select*from store_menu")

@@ -38,8 +38,8 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public Long max() {
-		return reservationMapper.max();
+	public Long max(Long uNum) {
+		return reservationMapper.max(uNum);
 	}
 	
 	 @Override

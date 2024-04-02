@@ -15,6 +15,6 @@ public class StoreDetailService {
     public void saveStoreDetail(StoreDetailDTO storeDetailDTO) {
         storeDetailMapper.saveStoreDetail(storeDetailDTO);
     }
-   
+    
    
 }

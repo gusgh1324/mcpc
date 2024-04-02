@@ -12,7 +12,7 @@ import com.mcpc.dto.ReservationDTO;
 
 @Mapper
 public interface ReservationMapper {
-    @Insert("insert into reservation (rNum, etc, hour, minute, orderTime, person, snum, unum) values(#{rNum}, #{etc}, #{hour}, #{minute}, now(), #{person}, #{storeDTO.sNum}, #{uNum})")
+    @Insert("insert into reservation (rNum, etc, hour, minute, orderTime, person, snum, unum) values(#{rNum}, #{etc}, #{hour}, #{minute}, now(), #{person}, #{sNum}, #{uNum})")
     public void insert(ReservationDTO reservation);
 
     @Insert("INSERT INTO remenuorder (oNum, menuCount, orderMenu, rnum, uNum) " +
@@ -28,9 +28,8 @@ public interface ReservationMapper {
     
     
     
-    @Select("SELECT MAX(rnum) FROM remenuorder;")
-    public Long max();
-    
+    @Select("SELECT MAX(rnum) FROM remenuorder WHERE uNum = #{uNum};")
+    public Long max(Long uNum);
 
     @Select("SELECT * FROM reservation WHERE unum = #{uNum}")
     List<ReservationDTO> getReservationsByUNum(@Param("uNum") Long uNum);

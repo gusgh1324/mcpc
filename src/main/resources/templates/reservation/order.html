@@ -71,11 +71,11 @@
 
 				<tbody>
 					<tr th:each="reme : ${reme}">
-						<th:block th:if="${reme.rNum == remax and reme.uNum == session.user.uNum}">
+						<th:block th:if="${reme.uNum == session.user.uNum and reme.rNum == remax }">
 							<td class="text-center" th:text="${reme.rNum}">주문번호</td>
 							<td class="text-center" th:text="${reme.orderMenu}">메뉴명</td>
 							<td class="text-center" th:text="${reme.menuCount}">수량</td>
-							<td class="text-center">6000</td>
+							<td class="text-center" th:text="${reme.menuCount}">가격</td>
 							<td class="text-center" th:text="${reme.menuCount * 6000}">소계</td>
 						</th:block>
 					</tr>
