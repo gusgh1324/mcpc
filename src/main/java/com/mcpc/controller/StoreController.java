@@ -17,8 +17,7 @@ import com.mcpc.service.StoreService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
-//@Controller
-@RestController
+@Controller
 @RequestMapping("/store/*")
 @RequiredArgsConstructor
 public class StoreController {
