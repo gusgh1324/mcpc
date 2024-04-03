@@ -66,7 +66,7 @@ public class ReservationController {
 		
 		model.addAttribute("menu", storeMenu);
 		
-		return "reservation/form";
+		return "/reservation/form";
 	}
 
 	@GetMapping("list")
