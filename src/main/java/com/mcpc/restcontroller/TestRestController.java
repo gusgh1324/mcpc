@@ -25,6 +25,7 @@ public class TestRestController {
 	public List<UserDTO> viewUser(){
     	return testRestService.viewUser();
     }
+	
 	@GetMapping("/stores")
 	public List<StoreDTO> viewStore(){
 		return testRestService.viewStore();
@@ -47,5 +48,18 @@ public class TestRestController {
 	public List<ReMenuOrderDTO> viewReMenuOrder(){
 		return testRestService.viewReMenuOrder();
 	}
+	
+	
+	@GetMapping("/all")
+    public TestDataDTO getAllData() {
+        TestDataDTO testData = new TestDataDTO();
+        testData.setUsers(testRestService.viewUser());
+        testData.setStores(testRestService.viewStore());
+        testData.setDetails(testRestService.viewDetail());
+        testData.setMenus(testRestService.viewMenu());
+        testData.setReservations(testRestService.viewReservation());
+        testData.setMenuOrders(testRestService.viewReMenuOrder());
+        return testData;
+    }
 
 }

@@ -51,7 +51,8 @@ public class UserloginController {
             session.setAttribute("user", u);
             return "redirect:/home";
         } else { //비밀번호 오류
-            return "fail";
+        	model.addAttribute("errorMessage", "아이디 또는 비밀번호를 확인해주세요.");
+            return "/login/user/login";
         }
     }
 

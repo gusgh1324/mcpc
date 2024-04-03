@@ -54,14 +54,12 @@
 					<tr th:each="store : ${store}">
 					<td> <a th:href="@{'/reservation/form/' + ${store.sNum}}" th:text="${store.sName}"></a></td>
 
-
-
 						
 						<td th:each="storeD : ${storeD}" 
 						th:if="${storeD.dNum == store.sNum}" 
 						th:text="${storeD.category}"></td>
 						
-						<td th:text="${store.sName}"></td>
+						<td th:text="${store.sMobile}"></td>
 						
 						<td th:each="storeD : ${storeD}" 
 						th:if="${storeD.dNum == store.sNum}" 
