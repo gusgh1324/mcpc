@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,11 @@ public class WorldCupController {
     public String worldCup(Model model) {
         List<WorldCupDTO> menuList = worldCupService.getRandomMenus(); // getRandomMenus 메서드 호출
         model.addAttribute("menuList", menuList);
+        List<Integer> test = new ArrayList<Integer>();
+        test.add(1);
+        test.add(2);
+        
+        model.addAttribute("test",test);
         return "worldCup";
     }
 

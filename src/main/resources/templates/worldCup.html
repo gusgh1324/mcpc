@@ -35,11 +35,13 @@
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- ======= Header ======= -->
     <th:block th:include="~{/fragments/header}"></th:block>
     <!-- End Header -->
 
     <div class="container">
+    <p th:text="${test}">
         <div class="row">
             <div class="col">
                 <h4>Menu List</h4>
@@ -56,7 +58,8 @@
                             <td th:text="${menu.mname}">Menu Name</td>
                             <td th:text="${menu.mprice}">Price</td>
                             <td>
-                                <button onclick="selectMenu('${menu.mname}', '${menu.mprice}', '${menuStat.index}')">Select</button> <!-- Select 버튼을 추가하고 onclick 이벤트 핸들러를 연결합니다 -->
+                                <button onclick="selectMenu('${menu.mname}', '${menu.mprice}', '${menu.mnum}')">Select1</button> <!-- Select 버튼을 추가하고 onclick 이벤트 핸들러를 연결합니다 -->
+                             
                             </td>
                         </tr>
                     </tbody>
@@ -68,12 +71,20 @@
     <!-- ======= Footer ======= -->
     <th:block th:include="~{/fragments/footer}"></th:block>
 
-    <script>
+    <script th:inline="javascript">
         var selectedMenus = [];
+        var indexs = [];
+        var test1 = /*[[${menuList}]]*/ null;
 
         // 메뉴를 선택하고 배열에 추가하는 함수
         function selectMenu(name, price, index) {
             selectedMenus.push({ "mname": name, "mprice": price });
+            indexs.push(test1);
+            indexs.push(test1[1]);
+            indexs.push(test1[2]);
+            console.log(indexs[0]);
+            console.log(indexs[1]);
+            console.log(indexs[2]);
             if (selectedMenus.length == 4) {
                 // 선택된 메뉴가 4개인 경우에는 추가 작업 수행
                 processSelection(index);

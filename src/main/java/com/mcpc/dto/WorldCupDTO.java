@@ -6,4 +6,5 @@ import lombok.Data;
 public class WorldCupDTO {
     private String mname;
     private int mprice;
+    private Long mNum;
 }
