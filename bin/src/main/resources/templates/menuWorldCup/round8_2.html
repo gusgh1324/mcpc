@@ -33,36 +33,84 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet">
     <style>
-        .image-container {
+        .contestant-container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .contestant-table {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .contestant {
             display: flex;
             justify-content: center;
-            align-items: center; /* 이미지를 수직 가운데로 정렬합니다. */
-            height: 100vh; /* 뷰포트 높이만큼의 높이를 가지도록 설정합니다. */
+            align-items: center;
         }
-        .image-container img {
-            width: 460px; /* 이미지의 너비를 460px로 고정합니다. */
-            height: 460px; /* 이미지의 높이를 460px로 고정합니다. */
+
+        .contestant img {
+            width: 460px;
+            height: 460px;
         }
     </style>
+    <script src="../Worldcup.js"></script>
 </head>
 <body>
 <div th:replace="~{fragments/header::header}"></div>
-    <h1>Round 8 - Step 2</h1>
-    <div class="container">
-        <div class="image-container">
-	        <img src="/images/image3.jpg" alt="Image 3" onclick="addSelectedImage(this)">
-	        <h1>Round8</h1>
-	        <img src="/images/image4.jpg" alt="Image 4" onclick="addSelectedImage(this)">
-		</div>
+	<h1 class="text-center">Round4</h1>
+	<div class="contestant-container">
+    <table class="contestant-table" id="num1">
+        <tr class="contestant" id="image1" onclick="hideImage('image1')">
+            <td>
+                <img id="menu1" alt="메뉴 1" onclick="addMenu('menu1')">
+            </td>
+            <td><h3>vs</h3></td>
+            <td>
+                <img id="menu2" alt="메뉴 2" onclick="addMenu('menu2')">
+            </td>
+        </tr>
+    </table>
+    <table class="contestant-table" id="num2">
+        <tr class="contestant" id="image3" onclick="hideImage('image3')">
+            <td>
+                <img id="menu3" alt="메뉴 3" onclick="addMenu('menu3')">
+            </td>
+            <td><h3>vs</h3></td>
+            <td>
+                <img id="menu4" alt="메뉴 4" onclick="addMenu('menu4')">
+            </td>
+        </tr>
+    </table>
+	<div class="text-center mt-4">
+		<a href="/menuWorldCup/round8_3" class="btn btn-primary" onclick="nextbattle">다음으로</a>
+	</div>
     </div>
-    <script>
-        var selectedImages = [];
-
-        function addSelectedImage(img) {
-            selectedImages.push(img.src);
-            window.location.href = "/menuWorldCup/round8_3";
-        }
-    </script>
 <div th:replace="~{fragments/footer::footer}"></div>
+
+<script>
+window.onload = function() { 
+	for (var i = 0; i < addMenu.length; i++) {
+	    var id = 'menu' + (i + 1);
+	    var imgElement = document.getElementById(id);
+	    imgElement.src = "/menu" + addMenu[i] + ".jpg";
+	}
+}
+function nextbattle(){
+	window.location.href = "/menuWorldCup/round8_3";
+}
+function addMenu(menuId){
+    var clickedImageIds = JSON.parse(localStorage.getItem('clickedImageIds')) || [];
+    clickedImageIds.push(menuId);
+    localStorage.setItem('clickedImageIds', JSON.stringify(clickedImageIds));
+}
+function hideImage(imageId) {
+    var imageElement = document.getElementById(imageId);
+    imageElement.style.display = 'none';
+}
+</script>
+
 </body>
 </html>

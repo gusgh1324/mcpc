@@ -3,59 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <title>사업자 회원가입</title>
+    
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>Impact Bootstrap Template - Index</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link href="../assets/img/favicon.png" rel="icon">
+<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="../assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link href="../assets/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../assets/css/main.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+    <style>
+       body {
+            background-color: #f8f9fa; /* 배경색 설정 */
+        }
+
+        .container {
+            margin-top: 50px; /* 상단 여백 조정 */
+            margin-bottom: 50px;
+            max-width: 500px; /* 최대 넓이 설정 */
+            margin-left: auto; /* 좌우 중앙 정렬 */
+            margin-right: auto; /* 좌우 중앙 정렬 */
+        }
+
+        form {
+            background-color: #ffffff; /* 폼 배경색 설정 */
+            padding: 20px; /* 폼 내부 여백 설정 */
+            border-radius: 10px; /* 폼 테두리 둥글게 설정 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+        }
+
+        h2 {
+            text-align: center; /* 헤더 중앙 정렬 */
+            margin-bottom: 20px; /* 하단 여백 조정 */
+        }
+
+        label {
+            font-weight: bold; /* 라벨 텍스트 굵게 설정 */
+        }
+
+        button {
+            background-color: #007bff; /* 버튼 배경색 설정 */
+            color: #ffffff; /* 버튼 텍스트 색상 설정 */
+            border: none; /* 버튼 테두리 제거 */
+            border-radius: 5px; /* 버튼 테두리 둥글게 설정 */
+            padding: 10px 20px; /* 버튼 내부 여백 설정 */
+            cursor: pointer; /* 마우스 커서 모양 변경 */
+            transition: background-color 0.3s; /* 배경색 변경 시 부드러운 효과 설정 */
+            width: 100%; /* 버튼 넓이 설정 */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
+        }
+    </style>
 </head>
 <body>
-    <h2>사업자 회원가입</h2>
-    <form action="storeJoin" method="post">
-        <div>
-            <label for="storeName">상호명:</label>
-            <input type="text" id="storeName" name="storeName">
-        </div>
-        <div>
-            <label for="storePassword">비밀번호:</label>
-            <input type="password" id="storePassword" name="storePassword">
-        </div>
-        <div>
-            <label for="category">카테고리:</label>
-            <input type="text" id="category" name="category">
-        </div>
-        <div>
-            <label for="mainMenu">대표 메뉴:</label>
-            <input type="text" id="mainMenu" name="mainMenu">
-        </div>
-        		<div>
-		    <label for="image">대표 메뉴 사진:</label>
-		    <input type="file" id="image" name="image" accept="image/*">
-		</div>
-        <div>
-            <label for="menuPrice">대표 메뉴 가격:</label>
-            <input type="text" id="menuPrice" name="menuPrice">
-        </div>
-        <div>
-            <label>광고:</label>
-            <input type="radio" id="premiumYes" name="priminum" value="Yes">
-            <label for="premiumYes">네</label>
-            <input type="radio" id="premiumNo" name="priminum" value="No">
-            <label for="premiumNo">아니요</label>
-        </div>
-        <div>
-            <label for="offDay">휴무일:</label><br>
-            <input type="checkbox" id="monday" name="offDay" value="월">
-            <label for="monday">월</label>
-            <input type="checkbox" id="tuesday" name="offDay" value="화">
-            <label for="tuesday">화</label>
-            <input type="checkbox" id="wednesday" name="offDay" value="수">
-            <label for="wednesday">수</label>
-            <input type="checkbox" id="thursday" name="offDay" value="목">
-            <label for="thursday">목</label>
-            <input type="checkbox" id="friday" name="offDay" value="금">
-            <label for="friday">금</label>
-            <input type="checkbox" id="saturday" name="offDay" value="토">
-            <label for="saturday">토</label>
-            <input type="checkbox" id="sunday" name="offDay" value="일">
-            <label for="sunday">일</label>
-        </div>
-        <button type="submit">회원가입</button>
-    </form>
+ <section id="topbar" class="topbar d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:mechu@google.com">mechu@google.com</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+82 010-0000-0000</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="/" class="/">홈</a>
+      </div>
+    </div>
+  </section><!-- End Top Bar -->
+  
+    <div class="container">
+        <form action="storeJoin" method="post">
+            <h2>사업자 회원가입</h2>
+            <div class="form-group">
+                <label for="sName">상호명:</label>
+                <input type="text" id="sName" name="sName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="sId">아이디:</label>
+                <input type="text" id="sId" name="sId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="sPw">비밀번호:</label>
+                <input type="password" id="sPw" name="sPw" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="sMobile">전화번호:</label>
+                <input type="tel" id="sMobile" name="sMobile" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="businessNum">사업자 번호:</label>
+                <input type="text" id="businessNum" name="businessNum" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">회원가입</button>
+            <button type="button" onclick="window.location.href='/'">취소</button>
+        </form>
+    </div>
+    
+    <div th:replace="~{fragments/footer::footer}"></div>
 </body>
 </html>

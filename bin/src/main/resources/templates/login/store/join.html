@@ -1,0 +1,51 @@
+<a href="/">홈으로</a>
+<h2>메추픽츄에 로그인 하실려면 회원가입이 필요합니다.</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<link rel="stylesheet" href="/join/join.css">
+		<form action="join">
+			<h1>사업자 회원가입</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+					href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+					href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span></span> 
+			<input type="storeName" placeholder="업체명" /> 
+			<input type="storeEmail" placeholder="이메일" /> 
+			<input type="password" placeholder="비밀번호" />
+			<button>회원가입</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="join_m">
+			<h1>회원가입</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+					href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+					href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span></span>
+			<input type="userName" placeholder="성 명" /> 
+			<input type="email" placeholder="이메일" /> 
+			<input type="password" placeholder="비밀번호" />
+			<button>회원가입</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>개인사용자인가요?</h1>
+				<p>다른사람들과 여러분의 픽을 공유하세요!</p>
+				<button class="ghost" id="signIn">회원가입</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>사장님 이신가요?</h1>
+				<p>메추픽츄를 이용하여<br>
+				여러분의 가게를 유쾌하게 알리세요!!</p>
+				<button class="ghost" id="signUp">회원가입</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/join/join.js"></script>

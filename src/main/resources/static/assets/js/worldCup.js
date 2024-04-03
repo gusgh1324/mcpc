@@ -1,3 +1,0 @@
-// worldCup.js
-
-var selectedImages = [];

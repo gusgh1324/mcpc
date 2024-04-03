@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Impact Bootstrap Template - Index</title>
+<title>MenuWorldCup</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -52,6 +52,7 @@
 	border-radius: 50%;
 }
 </style>
+<script src="../Worldcup.js"></script>
 </head>
 <body>
 	<div th:replace="~{fragments/header::header}"></div>
@@ -60,25 +61,25 @@
 			<div class="col-md-3">
 				<!-- 첫 번째 이미지를 왼쪽 상단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image1.jpg" alt="메뉴 1">
-				</div>
+                    <img id="menu1" alt="메뉴 1">
+                </div>
 			</div>
 			<div class="col-md-3">
 				<!-- 두 번째 이미지를 오른쪽 상단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image2.jpg" alt="메뉴 2">
+					<img id="menu2" alt="메뉴 2">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<!-- 세 번째 이미지를 왼쪽 하단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image3.jpg" alt="메뉴 3">
+					<img id="menu3" alt="메뉴 3">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<!-- 네 번째 이미지를 오른쪽 하단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image4.jpg" alt="메뉴 4">
+					<img id="menu4" alt="메뉴 4">
 				</div>
 			</div>
 		</div>
@@ -86,32 +87,67 @@
 			<div class="col-md-3">
 				<!-- 다섯 번째 이미지를 왼쪽 상단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image5.jpg" alt="메뉴 5">
+					<img id="menu5" alt="메뉴 5">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<!-- 여섯 번째 이미지를 오른쪽 상단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image6.jpg" alt="메뉴 6">
+					<img id="menu6" alt="메뉴 6">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<!-- 일곱 번째 이미지를 왼쪽 하단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image7.jpg" alt="메뉴 7">
+					<img id="menu7" alt="메뉴 7">
 				</div>
 			</div>
 			<div class="col-md-3">
 				<!-- 여덟 번째 이미지를 오른쪽 하단에 표시 -->
 				<div class="contestant">
-					<img src="/images/image8.jpg" alt="메뉴 8">
+					<img id="menu8" alt="메뉴 8">
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="text-center mt-4">
-		<a href="/menuWorldCup/start" class="btn btn-primary">시작하기</a>
+		<a href="/menuWorldCup/round8_1" class="btn btn-primary" onclick="addMenu">시작하기</a>
 	</div>
 	<div th:replace="~{fragments/footer::footer}"></div>
+	<script>
+	window.onload = function() { 
+	    // 1부터 8까지의 숫자를 담은 배열 생성
+	    var numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+	    // 이미 선택된 이미지를 담을 배열
+	    var selectedImages = [];
+
+	    // 8개의 이미지를 선택할 때까지 반복
+	    for (var i = 0; i < 8; i++) {
+	        // numbers 배열에서 랜덤하게 인덱스 선택
+	        var randomIndex = Math.floor(Math.random() * numbers.length);
+
+	        // 선택된 숫자를 selectedImages 배열에 추가
+	        selectedImages.push(numbers[randomIndex]);
+
+	        // 이미 선택된 숫자는 numbers 배열에서 제거
+	        numbers.splice(randomIndex, 1);
+	    }
+
+	    // 각 이미지의 id를 이용하여 src 변경
+	    for (var i = 0; i < selectedImages.length; i++) {
+	        var id = 'menu' + (i + 1);
+	        var imgElement = document.getElementById(id);
+	        imgElement.src = "/menu" + selectedImages[i] + ".jpg";
+	    }
+	}
+	function addMenu (){
+		for(var i = 0; i++ ; i<8){
+			menu8.push(selectedImages[i]);
+		}
+	}
+
+	</script>
+	
 </body>
 </html>

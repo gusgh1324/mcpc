@@ -1127,8 +1127,10 @@ section {
 
 .portfolio .portfolio-flters li:hover,
 .portfolio .portfolio-flters li.filter-active {
-  color: var(--color-primary);
+  color: blue; /* RGB 값 대신에 색상 이름 또는 HEX 코드를 사용하세요 */
+  font-weight: bold; /* font-style 대신에 font-weight를 사용하세요 */
 }
+
 
 .portfolio .portfolio-flters li:first-child {
   margin-left: 0;

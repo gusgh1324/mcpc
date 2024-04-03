@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>mcpc</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <th:block th:include="~{/fragments/header}"></th:block>
+    <!-- End Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Menu List</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Menu Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Select</th> <!-- Select 버튼을 추가합니다 -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="menu, menuStat : ${menuList}" class="menu-row" th:id="'menu-' + ${menuStat.index}">
+                            <td th:text="${menu.mname}">Menu Name</td>
+                            <td th:text="${menu.mprice}">Price</td>
+                            <td>
+                                <button onclick="selectMenu('${menu.mname}', '${menu.mprice}', '${menuStat.index}')">Select</button> <!-- Select 버튼을 추가하고 onclick 이벤트 핸들러를 연결합니다 -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <th:block th:include="~{/fragments/footer}"></th:block>
+
+    <script>
+        var selectedMenus = [];
+
+        // 메뉴를 선택하고 배열에 추가하는 함수
+        function selectMenu(name, price, index) {
+            selectedMenus.push({ "mname": name, "mprice": price });
+            if (selectedMenus.length == 4) {
+                // 선택된 메뉴가 4개인 경우에는 추가 작업 수행
+                processSelection(index);
+            }
+        }
+
+        // 추가 작업을 수행하는 함수
+        function processSelection(selectedIndex) {
+            // 선택된 메뉴의 행을 제외한 나머지 행을 숨깁니다.
+            var rows = document.querySelectorAll('.menu-row');
+            for (var i = 0; i < rows.length; i++) {
+                if (i != selectedIndex) {
+                    rows[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
