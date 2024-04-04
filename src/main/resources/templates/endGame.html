@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h4>Final Match</h4>
+                <h4>Selected Complete</h4>
                 <table id="finalMatchTable" class="table">
                     <thead>
                         <tr>
@@ -53,17 +53,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="mnum1"></td>
-                            <td class="mname1" onclick="add1ToFinalMatch(this)">Menu Name</td>
-                            <td class="mprice1"></td>
+                            <td id="mnum1">Menu Num</td>
+                            <td id="mname1">Menu Name</td>
+                            <td id="mprice1">Price</td>
                         </tr>
                         <tr>
-                            <td class="mnum2"></td>
-                            <td class="mname2" onclick="add2ToFinalMatch(this)">Menu Name</td>
-                            <td class="mprice2"></td>
+                            <td id="mnum2">Menu Num</td>
+                            <td id="mname2">Menu Name</td>
+                            <td id="mprice2">Price</td>
                         </tr>
                     </tbody>
                 </table>
+                <div>
+	                <button>예약하러가기</button>
+                </div>
             </div>
         </div>
     </div>
@@ -72,47 +75,8 @@
     <th:block th:include="~{/fragments/footer}"></th:block>
 
     <script>
-        var finalSelectedMenus = []; // Array to store final selected menus
-
-        // Function to add selected menu to finalSelectedMenus array
-        function add1ToFinalMatch(element) {
-            var mnum = element.parentElement.querySelector('.mnum1').innerText;
-            var mname = element.innerText;
-            var mprice = element.parentElement.querySelector('.mprice1').innerText;
-            finalSelectedMenus.push({
-                mnum: mnum,
-                mname: mname,
-                mprice: mprice
-            });
-            console.log(finalSelectedMenus);
-            redirectToEndGame();
-        }
-        function add2ToFinalMatch(element) {
-            var mnum = element.parentElement.querySelector('.mnum2').innerText;
-            var mname = element.innerText;
-            var mprice = element.parentElement.querySelector('.mprice2').innerText;
-            finalSelectedMenus.push({
-                mnum: mnum,
-                mname: mname,
-                mprice: mprice
-            });
-            console.log(finalSelectedMenus);
-            redirectToEndGame();
-        }
-
-        // Function to redirect to endGame page with final selected menus
-        function redirectToEndGame() {
-            var queryString = '?';
-            for (var i = 0; i < finalSelectedMenus.length; i++) {
-                queryString += 'mnum' + (i + 1) + '=' + finalSelectedMenus[i].mnum + '&';
-                queryString += 'mname' + (i + 1) + '=' + finalSelectedMenus[i].mname + '&';
-                queryString += 'mprice' + (i + 1) + '=' + finalSelectedMenus[i].mprice + '&';
-            }
-            queryString = queryString.slice(0, -1); // Remove the last '&' character
-            window.location.href = '/endGame' + queryString;
-        }
-
-        window.onload = function () {
+        // Function to display final match menu data
+        function displayFinalMatchMenu() {
             // Retrieve menu data from query string
             var urlParams = new URLSearchParams(window.location.search);
             var mnum1 = urlParams.get('mnum1');
@@ -123,12 +87,16 @@
             var mprice2 = urlParams.get('mprice2');
 
             // Display menu data in table
-            document.querySelector('.mnum1').innerText = mnum1;
-            document.querySelector('.mname1').innerText = mname1;
-            document.querySelector('.mprice1').innerText = mprice1;
-            document.querySelector('.mnum2').innerText = mnum2;
-            document.querySelector('.mname2').innerText = mname2;
-            document.querySelector('.mprice2').innerText = mprice2;
+            document.getElementById('mnum1').innerText = mnum1;
+            document.getElementById('mname1').innerText = mname1;
+            document.getElementById('mprice1').innerText = mprice1;
+            document.getElementById('mnum2').innerText = mnum2;
+            document.getElementById('mname2').innerText = mname2;
+            document.getElementById('mprice2').innerText = mprice2;
+        }
+
+        window.onload = function () {
+            displayFinalMatchMenu();
         };
     </script>
 

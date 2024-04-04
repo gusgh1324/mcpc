@@ -60,4 +60,9 @@ public class WorldCupController {
     public String finalMatch() {
     	return "finalMatch";
     }
+    // endGame 페이지로 이동하는 메서드
+    @GetMapping("/endGame")
+    public String endGame() {
+    	return "endGame";
+    }
 }
