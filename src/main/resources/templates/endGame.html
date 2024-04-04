@@ -54,7 +54,7 @@
                     <tbody>
                         <tr>
                             <td id="mnum1">Menu Num</td>
-                            <td><a href="#" onclick="getSnumForMname('mname1');"><span id="mname1">Menu Name</span></a></td>
+                            <td><a href="#" onclick="logReservSnum(); window.location.href = 'http://localhost:8029/reservation/form/' + reservSnum1;"><span id="mname1">Menu Name</span></a></td>
                             <td id="mprice1">Price</td>
                         </tr>
                         <tr>
@@ -95,10 +95,11 @@
         window.onload = function () {
             displayFinalMatchMenu();
         };
-        function getSnumForMname(){
-        	console.log(mname1);
+        function logReservSnum() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var reservSnum = urlParams.get('reservSnum1');
+            window.location.href = '/reservation/form/' + reservSnum;
         }
-
     </script>
 
 </body>
