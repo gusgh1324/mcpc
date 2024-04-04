@@ -73,6 +73,7 @@
 
     <script>
         var finalSelectedMenus = []; // Array to store final selected menus
+        var reservSnum = []; // Array to store snum values
 
         // Function to add selected menu to finalSelectedMenus array
         function add1ToFinalMatch(element) {
@@ -84,6 +85,7 @@
                 mname: mname,
                 mprice: mprice
             });
+            reservSnum.push(mnum); // Add snum to reservSnum array
             console.log(finalSelectedMenus);
             redirectToEndGame();
         }
@@ -96,17 +98,21 @@
                 mname: mname,
                 mprice: mprice
             });
+            reservSnum.push(mnum); // Add snum to reservSnum array
             console.log(finalSelectedMenus);
             redirectToEndGame();
         }
 
-        // Function to redirect to endGame page with final selected menus
+        // Function to redirect to endGame page with final selected menus and reservSnum
         function redirectToEndGame() {
             var queryString = '?';
             for (var i = 0; i < finalSelectedMenus.length; i++) {
                 queryString += 'mnum' + (i + 1) + '=' + finalSelectedMenus[i].mnum + '&';
                 queryString += 'mname' + (i + 1) + '=' + finalSelectedMenus[i].mname + '&';
                 queryString += 'mprice' + (i + 1) + '=' + finalSelectedMenus[i].mprice + '&';
+            }
+            for (var j = 0; j < reservSnum.length; j++) {
+                queryString += 'reservSnum' + (j + 1) + '=' + reservSnum[j] + '&';
             }
             queryString = queryString.slice(0, -1); // Remove the last '&' character
             window.location.href = '/endGame' + queryString;
