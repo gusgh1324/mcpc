@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Winner Match</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <th:block th:include="~{/fragments/header}"></th:block>
+    <!-- End Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Menu List</h4>
+                <table id="selectedMenuTable" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Menu Num</th>
+                            <th scope="col">Menu Name</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="selectedMenuTableBody">
+					    
+					</tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <th:block th:include="~{/fragments/footer}"></th:block>
+<script>
+    // Retrieve selected menu data from localStorage
+    var selectedMnums = JSON.parse(localStorage.getItem('selectedMnums'));
+    var finalSelectedMenus = []; // New array to store selected menus
+
+    // Function to display selected menus in table
+    function displaySelectedMenus() {
+        var tableBody = document.getElementById('selectedMenuTableBody');
+        if (!selectedMnums || selectedMnums.length === 0) {
+            // If no menus are selected, display a message
+            tableBody.innerHTML = '<tr><td colspan="3">No menus selected</td></tr>';
+            return;
+        }
+
+        // Populate table rows with selected menu data
+        selectedMnums.forEach(function(menu) {
+            var row = '<tr>';
+            row += '<td>' + menu.mnum + '</td>';
+            row += '<td class="menuName" data-mname="' + menu.mname + '">' + menu.mname + '</td>';
+            row += '<td>' + menu.mprice + '</td>';
+            row += '</tr>';
+            tableBody.innerHTML += row;
+        });
+
+        // Add click event listener to menu names
+        var menuNameElements = document.querySelectorAll('.menuName');
+        menuNameElements.forEach(function(element) {
+            element.addEventListener('click', function() {
+                // Get menu name from data attribute
+                var mname = element.getAttribute('data-mname');
+                // Find corresponding menu in selectedMnums array
+                var selectedMenu = selectedMnums.find(function(menu) {
+                    return menu.mname === mname;
+                });
+                // Push selected menu to finalSelectedMenus array
+                finalSelectedMenus.push(selectedMenu);
+                console.log(finalSelectedMenus);
+                // Check if selected menus count reaches 2, then redirect to finalMatch.html
+                if (finalSelectedMenus.length === 2) {
+                    redirectToFinalMatch();
+                }
+            });
+        });
+    }
+
+    // Function to redirect to finalMatch.html
+    function redirectToFinalMatch() {
+        // Construct query string with selected menu information
+        var queryString = '?mnum1=' + finalSelectedMenus[0].mnum + '&mname1=' + finalSelectedMenus[0].mname + '&mprice1=' + finalSelectedMenus[0].mprice +
+            '&mnum2=' + finalSelectedMenus[1].mnum + '&mname2=' + finalSelectedMenus[1].mname + '&mprice2=' + finalSelectedMenus[1].mprice;
+        // Redirect to finalMatch page with query string
+        window.location.href = '/finalMatch' + queryString;
+    }
+
+    window.onload = function() {
+        displaySelectedMenus();
+    };
+</script>
+</body>
+
+</html>

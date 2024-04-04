@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>mcpc</title>
+    <title>Final Match</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -35,7 +35,6 @@
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- ======= Header ======= -->
     <th:block th:include="~{/fragments/header}"></th:block>
     <!-- End Header -->
@@ -43,8 +42,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h4>Menu List</h4>
-                <table id="menuTable" class="table">
+                <h4>Final Match</h4>
+                <table id="finalMatchTable" class="table">
                     <thead>
                         <tr>
                             <th scope="col">Menu Num</th>
@@ -53,10 +52,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="menu : ${menuList}" onclick="saveMnum(this)">
-                            <td th:text="${menu.mnum}" id="mnum">Menu Num</td>
-                            <td th:text="${menu.mname}" id="mname">Menu Name</td>
-                            <td th:text="${menu.mprice}" id="mprice">Price</td>
+                        <tr>
+                            <td id="mnum1">Menu Num</td>
+                            <td id="mname1">Menu Name</td>
+                            <td id="mprice1">Price</td>
+                        </tr>
+                        <tr>
+                            <td id="mnum2">Menu Num</td>
+                            <td id="mname2">Menu Name</td>
+                            <td id="mprice2">Price</td>
                         </tr>
                     </tbody>
                 </table>
@@ -67,32 +71,30 @@
     <!-- ======= Footer ======= -->
     <th:block th:include="~{/fragments/footer}"></th:block>
 
-    <!-- JavaScript를 사용하여 선택된 메뉴 번호를 secondMatch.html 페이지로 전달합니다 -->
-    <script th:inline="javascript">
-        var selectedMnums = []; // 선택된 메뉴 번호를 저장할 배열
+    <script>
+        // Function to display final match menu data
+        function displayFinalMatchMenu() {
+            // Retrieve menu data from query string
+            var urlParams = new URLSearchParams(window.location.search);
+            var mnum1 = urlParams.get('mnum1');
+            var mname1 = urlParams.get('mname1');
+            var mprice1 = urlParams.get('mprice1');
+            var mnum2 = urlParams.get('mnum2');
+            var mname2 = urlParams.get('mname2');
+            var mprice2 = urlParams.get('mprice2');
 
-        function saveMnum(row) {
-            var mnum = row.querySelector('#mnum').innerText;
-            var mname = row.querySelector('#mname').innerText;
-            var mprice = row.querySelector('#mprice').innerText;
-            selectedMnums.push({
-                mnum: mnum,
-                mname: mname,
-                mprice: mprice
-            });
-            console.log(selectedMnums);
-            localStorage.setItem('selectedMnums', JSON.stringify(selectedMnums)); // 선택된 메뉴 번호를 localStorage에 저장
-            if (selectedMnums.length === 4) {
-                // 선택된 메뉴 번호가 4개일 때 페이지를 SecondMatch.html로 리다이렉트
-                redirectToSecondMatch();
-            }
+            // Display menu data in table
+            document.getElementById('mnum1').innerText = mnum1;
+            document.getElementById('mname1').innerText = mname1;
+            document.getElementById('mprice1').innerText = mprice1;
+            document.getElementById('mnum2').innerText = mnum2;
+            document.getElementById('mname2').innerText = mname2;
+            document.getElementById('mprice2').innerText = mprice2;
         }
 
-        function redirectToSecondMatch() {
-            // URL 대신 localStorage에 저장된 데이터를 함께 전달하여 페이지 이동
-            window.location.href = '/secondMatch';
-        }
-
+        window.onload = function () {
+            displayFinalMatchMenu();
+        };
     </script>
 
 </body>
