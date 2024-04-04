@@ -27,8 +27,6 @@ public interface StoreMenuMapper {
 	public List<StoreMenuDTO> menuList();
 	
 	StoreDTO getStoreBysNum(@Param("sNum") Long sNum);
-
-
 	
 	
 }

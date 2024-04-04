@@ -23,6 +23,7 @@ public class WorldCupServiceImpl implements WorldCupService {
     public List<WorldCupDTO> getMenu() {
         return worldCupMapper.selectMenu();
     }
+    
 
     @Override
     public List<WorldCupDTO> getRandomMenus() {
@@ -30,4 +31,5 @@ public class WorldCupServiceImpl implements WorldCupService {
         Collections.shuffle(menuList);
         return menuList.subList(0, 8); // 8개의 랜덤한 메뉴 선택
     }
+
 }

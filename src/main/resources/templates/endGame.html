@@ -54,14 +54,12 @@
                     <tbody>
                         <tr>
                             <td id="mnum1">Menu Num</td>
-                            <!-- Modified the anchor tag to call logReservSnum function and redirect to the given URL -->
-                            <td><a href="#" onclick="logReservSnum(); window.location.href = 'http://localhost:8029/reservation/form/' + reservSnum1;"><span id="mname1">Menu Name</span></a></td>
+                            <td><a href="#" onclick="getSnumForMname('mname1');"><span id="mname1">Menu Name</span></a></td>
                             <td id="mprice1">Price</td>
                         </tr>
                         <tr>
                             <td id="mnum2">Menu Num</td>
-                            <!-- Modified the anchor tag to call logReservSnum function and redirect to the given URL -->
-                            <td><a href="#" onclick="logReservSnum(); window.location.href = 'http://localhost:8029/reservation/form/' + reservSnum1;"><span id="mname2">Menu Name</span></a></td>
+                            <td id="mname2">Menu Name</td>
                             <td id="mprice2">Price</td>
                         </tr>
                     </tbody>
@@ -97,18 +95,10 @@
         window.onload = function () {
             displayFinalMatchMenu();
         };
-        function logReservSnum() {
-            // Retrieve reservSnum data from query string
-            var urlParams = new URLSearchParams(window.location.search);
-            var reservSnum1 = urlParams.get('reservSnum1');
-            var reservSnum2 = urlParams.get('reservSnum2');
-            var snum = reservSnum1.toString
-            // Log reservSnum values
-            console.log('reservSnum1:', reservSnum1);
-            console.log('reservSnum2:', reservSnum2);
-            // If you have more reservSnum values, you can log them in a similar manner
-            window.location.href = '/reservation/form/' + reservSnum1;
+        function getSnumForMname(){
+        	console.log(mname1);
         }
+
     </script>
 
 </body>
