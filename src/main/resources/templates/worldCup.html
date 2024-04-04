@@ -48,6 +48,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Menu Num</th>
                             <th scope="col">Menu Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Select</th> <!-- Select 버튼을 추가합니다 -->
@@ -55,6 +56,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="menu, menuStat : ${menuList}" class="menu-row" th:id="'menu-' + ${menuStat.index}">
+                            <td th:text="${menu.mnum}">Menu Num</td>
                             <td th:text="${menu.mname}">Menu Name</td>
                             <td th:text="${menu.mprice}">Price</td>
                             <td>
@@ -74,17 +76,13 @@
     <script th:inline="javascript">
         var selectedMenus = [];
         var indexs = [];
-        var test1 = /*[[${menuList}]]*/ null;
 
         // 메뉴를 선택하고 배열에 추가하는 함수
-        function selectMenu(name, price, index) {
-            selectedMenus.push({ "mname": name, "mprice": price });
-            indexs.push(test1);
-            indexs.push(test1[1]);
-            indexs.push(test1[2]);
+        function selectMenu(name, price, num) {
+            selectedMenus.push({ "mname": name, "mprice": price, "mnum":num });
+            console.log(selectedMenus);
+            indexs.push(selectedMenus);
             console.log(indexs[0]);
-            console.log(indexs[1]);
-            console.log(indexs[2]);
             if (selectedMenus.length == 4) {
                 // 선택된 메뉴가 4개인 경우에는 추가 작업 수행
                 processSelection(index);
