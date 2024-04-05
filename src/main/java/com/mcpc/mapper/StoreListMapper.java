@@ -21,6 +21,6 @@ public interface StoreListMapper {
 	@Select("select * from store")
 	public List<StoreDTO> list3();
 	
-	@Select("SELECT mname FROM store_menu WHERE snum = #{sId}")
+	@Select("SELECT * FROM store_menu WHERE snum = #{sId}")
 	public List<StoreMenuDTO> listDetail(Long sId);
 }

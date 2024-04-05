@@ -70,25 +70,26 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="reme : ${reme}">
+					<tr th:each="reme : ${reme} ">
 						<th:block th:if="${reme.uNum == session.user.uNum and reme.rNum == remax }">
 							<td class="text-center" th:text="${reme.rNum}">주문번호</td>
 							<td class="text-center" th:text="${reme.orderMenu}">메뉴명</td>
 							<td class="text-center" th:text="${reme.menuCount}">수량</td>
-							<td class="text-center" th:text="${reme.menuCount}">가격</td>
-							<td class="text-center" th:text="${reme.menuCount * 6000}">소계</td>
+							<td class="text-center" th:text="${reme.priceMenu}">가격</td>
+							<td class="text-center" th:text="${reme.menuCount * reme.priceMenu+'원'}">소계</td>
 						</th:block>
 					</tr>
 				</tbody>
 
 				<tfoot>
-					<tr>
+					<tr th:each="reme : ${reme} ">
+						<th:block th:if="${reme.uNum == session.user.uNum and reme.rNum == remax }">
 						<td></td>
 						<td></td>
 						<td></td>
 						<td class="text-right"><strong></strong></td>
-						<td class="text-center text-danger"><strong>총액 :
-								18000</strong></td>
+						<td class="text-center text-danger" ><strong th:text="${'총액 : '+reme.menuCount * reme.priceMenu+'원'}"></strong></td>
+						</th:block>
 					</tr>
 				</tfoot>
 			</table>

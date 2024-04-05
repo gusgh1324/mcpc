@@ -36,19 +36,21 @@ public class ReservationController {
 	
 	@PostMapping("/form/form")
 	public String formInsert1(ReservationDTO reservation, @RequestParam List<String> orderMenu,
-			@RequestParam List<Integer> menuCount) {
-		List<ReMenuOrderDTO> menuOrders = new ArrayList<>();
-		for (int i = 0; i < orderMenu.size(); i++) {
-			ReMenuOrderDTO reMenuOrder = new ReMenuOrderDTO();
-			reMenuOrder.setOrderMenu(orderMenu.get(i));
-			reMenuOrder.setMenuCount(menuCount.get(i));
-			menuOrders.add(reMenuOrder);
-		}
-		
-		reservationService.insert(reservation, menuOrders);
-		
-		return "redirect:/reservation/thankCustomer";
+	        @RequestParam List<String> priceMenu, @RequestParam List<Integer> menuCount) {
+	    List<ReMenuOrderDTO> menuOrders = new ArrayList<>();
+	    for (int i = 0; i < orderMenu.size(); i++) {
+	        ReMenuOrderDTO reMenuOrder = new ReMenuOrderDTO();
+	        reMenuOrder.setOrderMenu(orderMenu.get(i));
+	        reMenuOrder.setMenuCount(menuCount.get(i));
+	        reMenuOrder.setPriceMenu(Integer.parseInt(priceMenu.get(i)));
+	        menuOrders.add(reMenuOrder);
+	    }
+	    
+	    reservationService.insert(reservation, menuOrders);
+	    
+	    return "redirect:/reservation/thankCustomer";
 	}
+
 
 	
 	@GetMapping("/form/{sNum}")
@@ -102,7 +104,7 @@ public class ReservationController {
 		if (reservations.isEmpty()) {
 			return "/reservation/reorder";
 		}
-
+		
 		model.addAttribute("reser", reservationService.list());
 		model.addAttribute("reme", reservationService.listmenu());
 		model.addAttribute("remax", reservationService.max(user.getUNum()));

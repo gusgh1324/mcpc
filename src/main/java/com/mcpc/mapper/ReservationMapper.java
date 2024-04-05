@@ -15,9 +15,10 @@ public interface ReservationMapper {
     @Insert("insert into reservation (rNum, etc, hour, minute, orderTime, person, snum, unum) values(#{rNum}, #{etc}, #{hour}, #{minute}, now(), #{person}, #{sNum}, #{uNum})")
     public void insert(ReservationDTO reservation);
 
-    @Insert("INSERT INTO remenuorder (oNum, menuCount, orderMenu, rnum, uNum) " +
-            "VALUES (#{oNum}, #{menuCount}, #{orderMenu}, (SELECT rnum FROM Reservation ORDER BY rnum DESC LIMIT 1), #{uNum})")
+    @Insert("INSERT INTO remenuorder ( menuCount, orderMenu, priceMenu, rnum, uNum) " +
+            "VALUES ( #{menuCount}, #{orderMenu},#{priceMenu}, (SELECT rnum FROM Reservation ORDER BY rnum DESC LIMIT 1), #{uNum})")
     public void insertmenu(ReMenuOrderDTO reMenuOrder);
+
 
     
     @Select("select * from reservation")

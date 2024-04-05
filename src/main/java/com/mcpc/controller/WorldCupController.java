@@ -1,6 +1,8 @@
 package com.mcpc.controller;
 
 import com.mcpc.dto.WorldCupDTO;
+import com.mcpc.service.StoreListService;
+import com.mcpc.service.StoreService;
 import com.mcpc.service.WorldCupService;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import java.util.List;
 public class WorldCupController {
 
     private final WorldCupService worldCupService;
+    private final StoreListService storeListService;
 
     @GetMapping("/worldCup")
     public String worldCup(Model model, HttpSession session) {
@@ -62,7 +65,9 @@ public class WorldCupController {
     }
     // endGame 페이지로 이동하는 메서드
     @GetMapping("/endGame")
-    public String endGame() {
+    public String endGame(Model model) {
+    	model.addAttribute("store", storeListService.list3());
+    	model.addAttribute("storeM", storeListService.list2());
     	return "endGame";
     }
 }

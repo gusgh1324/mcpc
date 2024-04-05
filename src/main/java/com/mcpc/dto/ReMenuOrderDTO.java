@@ -25,8 +25,11 @@ public class ReMenuOrderDTO {
     private Long oNum;
 	@Column(name = "ordermenu")
 	private String orderMenu;
+	@Column(name = "pricemenu")
+	private int priceMenu;
 	@Column(name = "menucount")
 	private int menuCount;
+	
 	
 	
 	
@@ -41,6 +44,7 @@ public class ReMenuOrderDTO {
 	 private UserDTO userDTO;
 	 @Transient
 	 private Long uNum;
+	
 	 
 	 
 
