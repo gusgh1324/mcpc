@@ -42,25 +42,37 @@
 <link href="../assets/css/main.css" rel="stylesheet">
 
 <style>
-        /* 스타일링 */
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh; /* 화면의 80% 만큼의 높이 */
-        }
+    /* 스타일링 */
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* 화면의 80% 만큼의 높이 */
+    }
 
-        .btn-container .btn {
-            margin: 10px;
-            padding: 20px 40px;
-            font-size: 20px;
-            border-radius: 10px;
-            background-color: #ced4da; /* 버튼 배경색 설정 */
-            border: 2px solid #ced4da; /* 버튼 테두리 색 설정 */
-            color: #000000; /* 버튼 텍스트 색 설정 */
-        }
-        
-    </style>
+    .btn-container .btn,
+    .btn-container a {
+    	width: 300px;
+        margin: 10px;
+        padding: 20px 40px;
+        font-size: 20px;
+        border-radius: 10px;
+        background-color: #ced4da; /* 배경색 */
+        border: 2px solid #ced4da; /* 테두리 */
+        color: #000000; /* 텍스트 색상 */
+        text-decoration: none; /* 링크에 밑줄 제거 */
+        display: inline-block; /* 인라인 요소로 변환하여 버튼처럼 보이게 함 */
+    }
+
+    .btn-container .btn:hover,
+    .btn-container a:hover {
+        /* 호버 효과 스타일링 */
+        background-color: #adb5bd; /* 호버 시 배경색 변경 */
+        border-color: #adb5bd; /* 호버 시 테두리 색상 변경 */
+        color: #ffffff; /* 호버 시 텍스트 색상 변경 */
+    }
+</style>
+
 </head>
 <body>
 
@@ -76,12 +88,12 @@
     </div>
   </section><!-- End Top Bar -->
   
-	<div class="btn-container">
-	    <a href="/store/storeJoin" class="btn btn-primary">사업자 회원가입</a>
-	    <a href="/store/storeLogin" class="btn btn-secondary">사업자 로그인</a>
-	    <a href="/store/storeDetail" class="btn btn-secondary">상세페이지</a>
-	    <a href="/store/storeMenu" class="btn btn-secondary">메뉴추가</a>
-	</div>
+    <div class="btn-container d-flex flex-column align-items-center">
+        <a href="/store/storeJoin" class="btn btn-primary">사업자 회원가입</a>
+        <a href="/store/storeLogin" class="btn btn-secondary">사업자 로그인 </a>
+        <a href="/store/storeDetail" class="btn btn-secondary">상세페이지</a>
+        <a href="/store/storeMenu" class="btn btn-secondary">메뉴 추가</a>
+    </div>
 	
 	<div th:replace="~{fragments/footer::footer}"></div>
 	

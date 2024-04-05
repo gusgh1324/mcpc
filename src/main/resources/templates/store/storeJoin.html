@@ -70,6 +70,11 @@
             font-weight: bold; /* 라벨 텍스트 굵게 설정 */
         }
 
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
         button {
             background-color: #007bff; /* 버튼 배경색 설정 */
             color: #ffffff; /* 버튼 텍스트 색상 설정 */
@@ -78,7 +83,7 @@
             padding: 10px 20px; /* 버튼 내부 여백 설정 */
             cursor: pointer; /* 마우스 커서 모양 변경 */
             transition: background-color 0.3s; /* 배경색 변경 시 부드러운 효과 설정 */
-            width: 100%; /* 버튼 넓이 설정 */
+            width: calc(50% - 5px); /* 버튼 넓이 설정 */
         }
 
         button:hover {
@@ -122,8 +127,10 @@
                 <label for="businessNum">사업자 번호:</label>
                 <input type="text" id="businessNum" name="businessNum" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">회원가입</button>
-            <button type="button" onclick="window.location.href='/'">취소</button>
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">회원가입</button>
+                <button type="button" onclick="window.location.href='/'" class="btn btn-secondary">취소</button>
+            </div>
         </form>
     </div>
     

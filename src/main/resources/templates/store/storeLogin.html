@@ -111,7 +111,7 @@ button[type="submit"]:hover {
 					<p>로그인 중입니다. 로그아웃을 하시겠습니까?</p>
 					<a th:href="@{/store/logout}">로그아웃</a>
 					
-					<p th:if="${session.sId != null}" th:text="${session.sId.sName}">인증된 가게: </p>
+					<!-- <p th:if="${session.sId != null}" th:text="${session.sId.sName}">인증된 가게: </p> -->
 
 					
 				</div>
@@ -129,7 +129,6 @@ button[type="submit"]:hover {
 								name="sPw">
 						</div>
 						<button type="submit">로그인</button>
-						<a href="/store/checkSession">세션 확인</a>
 					</form>
 				</div>
 			</div>
