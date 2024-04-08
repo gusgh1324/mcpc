@@ -104,7 +104,7 @@ public class ReservationController {
 		if (reservations.isEmpty()) {
 			return "/reservation/reorder";
 		}
-		
+		model.addAttribute("store",storeListService.list3());
 		model.addAttribute("reser", reservationService.list());
 		model.addAttribute("reme", reservationService.listmenu());
 		model.addAttribute("remax", reservationService.max(user.getUNum()));

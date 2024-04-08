@@ -44,15 +44,14 @@
 <title>주문 정보</title>
 </head>
 <body>
-	<div th:replace=" ~{fragments/header::header}"></div>
+	<th:block th:include="~{/fragments/header}"></th:block>
 
 
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">주문 정보</h1>
 		</div>
 	</div>
-	<div class="container col-8 alert alert-info">
+	<div class="container">
 		<div class="text-center">
 			<h1>영수증</h1>
 		</div>
@@ -105,8 +104,9 @@
 			<a href="#" class="btn btn-secondary" onclick="storetelephone()">
 				&laquo; 전화문의</a>
 		</div>
+		<br>
 	</div>
-	<div th:replace="~{fragments/footer::footer}"></div>
+	<th:block th:include="~{/fragments/footer}"></th:block>
 </body>
 <script>
 	function cancelReservation() {

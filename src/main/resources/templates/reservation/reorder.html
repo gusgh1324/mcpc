@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<div th:replace="~{fragments/header::header}"></div>
+	<th:block th:include="~{/fragments/header}"></th:block>
 	<div layout:fragment="content">
 		<div class="container mt-3">
 			<h2>주문내역</h2>
@@ -55,7 +55,7 @@
 			</table>
 		</div>
 	</div>
-	<div th:replace="~{fragments/footer::footer}"></div>
+	<th:block th:include="~{/fragments/footer}"></th:block>
 </body>
 
 </html>

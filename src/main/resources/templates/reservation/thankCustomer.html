@@ -41,7 +41,7 @@
 </head>
 
 <body>
-	<div th:replace=" ~{fragments/header::header}"></div>
+	<th:block th:include="~{/fragments/header}"></th:block>
 
 	<div class="jumbotron">
 
@@ -67,7 +67,7 @@
 		</p>
 	</div>
 
-	<div th:replace="~{fragments/footer::footer}"></div>
+	<th:block th:include="~{/fragments/footer}"></th:block>
 </body>
 
 <script>

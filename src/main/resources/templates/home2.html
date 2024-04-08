@@ -39,37 +39,36 @@
 
 	<th:block th:include="~{/fragments/header}"></th:block>
 
-		<div class="container">
-			<h2 th:text="메뉴추천"></h2>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>가게명</th>
-						<th>카태고리</th>
-						<th>가게 전화번호</th>
-						<th>휴일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="store : ${store}">
-					<td> <a th:href="@{'/reservation/form/' + ${store.sNum}}" th:text="${store.sName}"></a></td>
+	<div class="container">
+		<br>
+		<h2 th:text="메뉴추천"></h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>가게명</th>
+					<th>카태고리</th>
+					<th>가게 전화번호</th>
+					<th>휴일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="store : ${store}">
+					<td><a th:href="@{'/reservation/form/' + ${store.sNum}}"
+						th:text="${store.sName}"></a></td>
 
-						
-						<td th:each="storeD : ${storeD}" 
-						th:if="${storeD.dNum == store.sNum}" 
-						th:text="${storeD.category}"></td>
-						
-						<td th:text="${store.sMobile}"></td>
-						
-						<td th:each="storeD : ${storeD}" 
-						th:if="${storeD.dNum == store.sNum}" 
-						th:text="${storeD.offDay}"></td>
-						
-						
-					</tr>
-				</tbody>
-			</table>
-		</div>
+					<td th:each="storeD : ${storeD}"
+						th:if="${storeD.dNum == store.sNum}" th:text="${storeD.category}"></td>
+
+					<td th:text="${store.sMobile}"></td>
+
+					<td th:each="storeD : ${storeD}"
+						th:if="${storeD.dNum == store.sNum}" th:text="${storeD.offDay}"></td>
+
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	</th:block>
 
 	<th:block th:include="~{/fragments/footer}"></th:block>
